@@ -1,38 +1,38 @@
-import albums from "./albumsExample.json"
-import React, { useState, useEffect } from 'react';
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import React, { useState, useEffect, useQuery } from 'react';
 import './scrollBar.css';
 import { getGenreFont, getYearColor} from "./albumStyles";
 import {getPlaylist} from "./spotifyAPI.js";
 
 export default function ScrollBar() {
+  const [playlist, setPlaylist] = useState([]);
 
-  const [playlist, setPlaylist] = useState("");
-
-  // useEffect(() => {
-  //   const fetchPlaylist = async () => {
-  //       const playlistData = await getPlaylist();
-  //       setPlaylist(playlistData);
-  //   };
+  useEffect(() => {
+    const fetchPlaylist = async () => {
+        const playlistData = await getPlaylist();
+        if (Array.isArray(JSON.parse(playlistData))) {
+          setPlaylist(JSON.parse(playlistData)); // Only set if it's an array
+        } else {
+          console.error("Could not parse playlistData.");
+        }
+      };
   
-  //   fetchPlaylist();
-  // }, []);
+    fetchPlaylist();
+  }, []);
 
   return (
     <div className="scrollElement">
-      <div>{playlist}</div>
-      {albums.map((album) => (
+      {playlist.map((album) => (
         <div
-          key={album.id}
+          key={`${album.artist_id}-${album.album_title}`}
           style={{
-            fontFamily: getGenreFont(album.genre),
+            fontFamily: getGenreFont(album.artist_genre),
             backgroundColor: getYearColor(album.release_date),
           }}
         >
-          <section id={album.id}>
-            <div className="title">{album.name}</div>
-            <div>{album.genre}</div>
-            <div className="artist">{album.artist}</div>
+          <section id={`${album.artist_id}-${album.album_title}`}>
+            <div className="title">{album.album_title}</div>
+            <div>{album.release_date}</div>
+            <div className="artist">{album.artist_name}</div>
           </section>
         </div>
       ))}

@@ -25,19 +25,16 @@ const genreFont = new Map([
 
 export function getGenreFont(spotifyGenres){
   // check combined genres (i.e.: folk rock)
-  console.log(spotifyGenres);
   for(let genre of spotifyGenres){
     if(genreFont.has(genre)){
-      console.log(genreFont.get(genre));
       return genreFont.get(genre);
     }
   }
-  // check broad genres (i.e.: folk, then rock)
+  // check broad genres (i.e.: folk, then rock, or k, pop as opposed to k-pop)
   for(let genre of spotifyGenres){
     let broadGenres = genre.split(/[ -]/);
     for(let broadGenre of broadGenres){
       if(genreFont.has(broadGenre)){
-        console.log(genreFont.get(broadGenre));
         return genreFont.get(broadGenre);
       }
     }
@@ -52,7 +49,7 @@ export function getYearColor(release_date){
   else if(albumDate < new Date("2020-06-17")){
     return "#a18381"
   }
-  else if(albumDate < new Date("2024-01-01s")){
+  else if(albumDate < new Date("2024-01-01")){
     return "#d1565e"
   }
   return "#f73667";
