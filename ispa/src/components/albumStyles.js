@@ -5,17 +5,50 @@ const genreFont = new Map([
   ["rock", "Helvetica"]
 ]);
 
-export function getGenreFont(spotifyGenre){
-  let genres = spotifyGenre.split(" "); //check all genres
-  console.log(genres);
-  for(let genre of genres){
+/*
+Common genres:
+  rap
+  hyperpop
+  pop
+  hip hop
+  folk
+  indie rock
+  indie pop (chappell roan)
+  punk (green day, lustsickpuppy is synth punk)
+  bubblegum bass (sophie, ag cook first genres)
+  bedroom pop
+  grunge
+  emo
+  breakcore
+  hardcore
+  edm
+  ai (for arca, it's the first genre that appears)
+  cloud rap (bladee, ecco first genres, snow strippers only genre)
+  hyper-rock (ada rook only genre, dorian electra, jane remover)
+  shibuya-kei (kineorama)
+  c-pop (faye wong only genre)
+  k-pop (rose)
+*/
+
+export function getGenreFont(spotifyGenres){
+  // check combined genres (i.e.: folk rock)
+  for(let genre of spotifyGenres){
     if(genreFont.has(genre)){
       return genreFont.get(genre);
     }
   }
+
+  // check broad genres (i.e.: folk, then rock)
+  for(let genre of spotifyGenres){
+    let broadGenres = genre.replace("core", "").split("");
+    for(let broadGenre in broadGenres){
+      if(genreFont.has(broadGenre)){
+        return genreFont.get(broadGenre);
+      }
+    }
+  }
   return "Calibri";
 }
-
 export function getYearColor(release_date){
   let albumDate = new Date(release_date);
   if(albumDate < new Date("2002-08-26")){
