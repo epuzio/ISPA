@@ -1,53 +1,48 @@
 // Map genres to fonts
 const genreFont = new Map([
+  ["pop", "Roboto"],
+  ["indie pop", "Roboto"],
+  ["bedroom pop", "Roboto"],
   ["rap", "Roboto"],
-  ["electronic", "Brush Script MT"],
-  ["rock", "Helvetica"]
+  ["hyperpop", "Roboto"],
+  ["ai", "Roboto"], // Arca
+  ["dariacore", "Arial"], // Jane Remover
+  ["bubblegum bass", "Roboto"], //SOPHIE, A.G. Cook
+  ["edm", "Roboto"],
+  ["breakcore", "Roboto"],
+  ["hardcore", "Roboto"],
+  ["cloud rap", "Roboto"], // Snow Strippers, Bladee
+  ["rap", "Times New Roman"],
+  ["hip hop", "Roboto"],
+  ["rock", "Roboto"],
+  ["indie rock", "Roboto"],
+  ["hyper-rock", "Roboto"], // Ada Rook, Dorian Electra
+  ["punk", "Roboto"],
+  ["grunge", "Roboto"],
+  ["emo", "Roboto"], // American Football
+  ["folk", "Brush Script MT"]
 ]);
-
-/*
-Common genres:
-  rap
-  hyperpop
-  pop
-  hip hop
-  folk
-  indie rock
-  indie pop (chappell roan)
-  punk (green day, lustsickpuppy is synth punk)
-  bubblegum bass (sophie, ag cook first genres)
-  bedroom pop
-  grunge
-  emo
-  breakcore
-  hardcore
-  edm
-  ai (for arca, it's the first genre that appears)
-  cloud rap (bladee, ecco first genres, snow strippers only genre)
-  hyper-rock (ada rook only genre, dorian electra, jane remover)
-  shibuya-kei (kineorama)
-  c-pop (faye wong only genre)
-  k-pop (rose)
-*/
 
 export function getGenreFont(spotifyGenres){
   // check combined genres (i.e.: folk rock)
+  console.log(spotifyGenres);
   for(let genre of spotifyGenres){
     if(genreFont.has(genre)){
+      console.log(genreFont.get(genre));
       return genreFont.get(genre);
     }
   }
-
   // check broad genres (i.e.: folk, then rock)
   for(let genre of spotifyGenres){
-    let broadGenres = genre.replace("core", "").split("");
-    for(let broadGenre in broadGenres){
+    let broadGenres = genre.split(/[ -]/);
+    for(let broadGenre of broadGenres){
       if(genreFont.has(broadGenre)){
+        console.log(genreFont.get(broadGenre));
         return genreFont.get(broadGenre);
       }
     }
   }
-  return "Calibri";
+  return "Calibri"; //default if nothing is found
 }
 export function getYearColor(release_date){
   let albumDate = new Date(release_date);

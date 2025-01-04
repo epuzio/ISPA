@@ -1,4 +1,4 @@
-import albums from "./albums.json"
+import albums from "./albumsExample.json"
 import React, { useState, useEffect } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import './scrollBar.css';
@@ -9,33 +9,30 @@ export default function ScrollBar() {
 
   const [playlist, setPlaylist] = useState("");
 
-  useEffect(() => {
-    const fetchPlaylist = async () => {
-        const playlistData = await getPlaylist();
-        setPlaylist(playlistData);
-    };
+  // useEffect(() => {
+  //   const fetchPlaylist = async () => {
+  //       const playlistData = await getPlaylist();
+  //       setPlaylist(playlistData);
+  //   };
   
-    fetchPlaylist();
-  }, []);
+  //   fetchPlaylist();
+  // }, []);
 
   return (
     <div className="scrollElement">
-      <div>
-        {playlist}
-      </div>
+      <div>{playlist}</div>
       {albums.map((album) => (
-        <div 
+        <div
+          key={album.id}
           style={{
             fontFamily: getGenreFont(album.genre),
-            backgroundColor: getYearColor(album.release_date)         
-          }}>
-          <section id={album.id} key={album.id}>
-            <div className="title">
-              {album.name}
-            </div>
-            <div className="artist">
-              {album.artist}
-            </div>
+            backgroundColor: getYearColor(album.release_date),
+          }}
+        >
+          <section id={album.id}>
+            <div className="title">{album.name}</div>
+            <div>{album.genre}</div>
+            <div className="artist">{album.artist}</div>
           </section>
         </div>
       ))}

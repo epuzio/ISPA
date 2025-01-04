@@ -4,34 +4,34 @@
         "name": "OIL OF EVERY PEARL",
         "artist": "SOPHIE",
         "release_date": "2017-06",
-        "genre": "electronic"
+        "genre": ["electronic", "art-pop"]
     },
     {
         "id": "Frailty",
         "name": "Frailty",
         "artist": "Jane Remover",
         "release_date": "2020-01",
-        "genre": "hyperpop"
+        "genre": ["dariacore", "hyperpop"]
     },
     {
         "id": "American Idiot",
         "name": "American Idiot",
         "artist": "Green Day",
         "release_date": "2004-10",
-        "genre": "rock"
+        "genre": ["rock"]
     },
     {
         "id": "I LAY DOWN MY LIFE FOR YOU",
         "name": "I LAY DOWN MY LIFE",
         "artist": "JPEGMAFIA",
         "release_date": "2024-08",
-        "genre": "rap"
+        "genre": ["rap"]
     },
     {
         "id": "Tracy Chapman",
         "name": "Tracy Chapman",
         "artist": "Tracy Chapman",
         "release_date": "1988-04",
-        "genre": "folk rock"
+        "genre": ["folk rock"]
     }
 ]

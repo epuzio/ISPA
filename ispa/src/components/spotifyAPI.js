@@ -4,7 +4,6 @@
 // const qs = require("qs");
 import axios from 'axios';
 import qs from 'qs';
-// require('dotenv').config();
 
 const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -27,12 +26,39 @@ const getAuth = async () => {
   }
 }
 
-async function getResponse(url, accessToken) {
-  return await axios.get(url, {
-    headers: {
-      'Authorization': `Bearer ${accessToken}`,
-    },
-  });
+// async function getResponse(url, accessToken) {
+//   return await axios.get(url, {
+//     headers: {
+//       'Authorization': `Bearer ${accessToken}`,
+//     }
+//   });
+// }
+
+async function getResponse(url, accessToken, eTag = null) {
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        ...(eTag && {'If-None-Match': eTag})
+      }
+    });
+    console.log("etag:::", response.headers);
+    return {
+      data: response.data,
+      eTag: response.headers.etag, 
+      status: response.status
+    }
+  } catch (error){
+    if (error.response && error.response.status === 304) {
+      return {
+        data: null,
+        eTag, 
+        status: 304, 
+      };
+    } else {
+      throw error; 
+    }
+  }
 }
 
 async function getArtistGenreFromArtistID(id, accessToken){
@@ -53,32 +79,36 @@ export const getPlaylist = async() => {
     const accessToken = await getAuth();
     const url = `https://api.spotify.com/v1/playlists/${playlistID}`;
     const response = await getResponse(url, accessToken);
-
-    let playlistObjects = response.data.tracks.items;
-
-    // Spotify only returns 100 tracks initially, request next batch of songs in the playlist 
-    let nextUrl = response.data.tracks.next; 
-    while(nextUrl){
-      const nextResponse = await getResponse(nextUrl, accessToken);
-      playlistObjects = [...playlistObjects, ...nextResponse.data.items];
-      nextUrl = nextResponse.data.next;
+    console.log(response.status);
+    if(response.status === 200){
+      localStorage.setItem('eTag', JSON.stringify(response.eTag));
     }
 
-    // Get the date added, artist, artist id and album title
-    const result = playlistObjects.map(item => ({
-      added_at: item.added_at,
-      artist: item.track.artists[0].name,
-      artist_id: item.track.artists[0].id,
-      album_title: item.track.album.name
-    }));
-    
-    // Spotify does not record album genre for albums or songs
-    // To get the artist genre, send a GET request to access the artist genre by artist ID
-    // // This code works, leave commented to avoid sending too many GET requests
+    // let playlistObjects = response.data.tracks.items;
 
-    // for(let i = 0; i < result.length; i+=1){
-    //   await getArtistGenreFromArtistID(result[i].artist_id,accessToken);
+    // // Spotify only returns 100 tracks initially, request next batch of songs in the playlist 
+    // let nextUrl = response.data.tracks.next; 
+    // while(nextUrl){
+    //   const nextResponse = await getResponse(nextUrl, accessToken);
+    //   playlistObjects = [...playlistObjects, ...nextResponse.data.items];
+    //   nextUrl = nextResponse.data.next;
     // }
+
+    // // Get the date added, artist, artist id and album title
+    // const result = playlistObjects.map(item => ({
+    //   added_at: item.added_at,
+    //   artist: item.track.artists[0].name,
+    //   artist_id: item.track.artists[0].id,
+    //   album_title: item.track.album.name
+    // }));
+
+    // // Spotify does not record album genre for albums or songs
+    // // To get the artist genre, send a GET request to access the artist genre by artist ID
+    // // // This code works, leave commented to avoid sending too many GET requests
+
+    // // for(let i = 0; i < result.length; i+=1){
+    // //   await getArtistGenreFromArtistID(result[i].artist_id,accessToken);
+    // // }
   } catch (error) {
     console.error('Error fetching playlist:', error);
   }
