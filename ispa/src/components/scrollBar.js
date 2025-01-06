@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useQuery } from 'react';
 import './scrollBar.css';
-import { getGenreFont, getYearColor} from "./albumStyles";
+import { getGenreFont} from "./albumStyles";
 import {getPlaylist} from "./spotifyAPI.js";
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
+  // const [albumColors, setAlbumColors] = useState([]);
 
   useEffect(() => {
     const fetchPlaylist = async () => {
@@ -12,12 +13,24 @@ export default function ScrollBar() {
         if (Array.isArray(JSON.parse(playlistData))) {
           setPlaylist(JSON.parse(playlistData)); // Only set if it's an array
         } else {
-          console.error("Could not parse playlistData.");
+          console.error("Error fetching spotify playlist data");
         }
       };
   
     fetchPlaylist();
   }, []);
+
+  // useEffect(() => {
+  //   const fetchColor = async () => {
+  //     for (const album of playlist) {
+  //       const color = await getAverageColor(album.image_url);
+  //       albumColors.push({[`${album.artist_id}-${album.album_title}`]: color});
+  //       setAlbumColors(albumColors);
+  //       // newColors[`${album.artist_id}-${album.album_title}`] = color;
+  //     }
+  //   }
+  //   fetchColor();
+  // }, [playlist]);
 
   return (
     <div className="scrollElement">
@@ -26,7 +39,9 @@ export default function ScrollBar() {
           key={`${album.artist_id}-${album.album_title}`}
           style={{
             fontFamily: getGenreFont(album.artist_genre),
-            backgroundColor: getYearColor(album.release_date),
+            backgroundColor: album.album_color,
+            // backgroundColor: getAverageColor(album.image_url),
+            // backgroundColor: getYearColor(album.release_date),
           }}
         >
           <section id={`${album.artist_id}-${album.album_title}`}>

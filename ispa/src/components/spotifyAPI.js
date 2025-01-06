@@ -1,6 +1,7 @@
 // Code taken from https://ritvikbiswas.medium.com/connecting-to-the-spotify-api-using-node-js-and-axios-client-credentials-flow-c769e2bee818
 import axios from 'axios';
 import qs from 'qs';
+import { FastAverageColor } from 'fast-average-color';
 
 const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -22,14 +23,6 @@ const getAuth = async () => {
     console.log(error);
   }
 }
-
-// async function getResponse(url, accessToken) {
-//   return await axios.get(url, {
-//     headers: {
-//       'Authorization': `Bearer ${accessToken}`,
-//     }
-//   });
-// }
 
 async function getResponse(url, accessToken) {
   try {
@@ -57,10 +50,26 @@ async function getArtistGenreFromArtistID(id, accessToken){
       if(error.response?.status != 429){
         return null;
       }
-      stall(2000); // Delay 2 seconds, retry request
+      await stall(1000); // Delay 2 seconds, retry request
     }
   }
 }
+
+// TOFIX: Returned colors aren't vibrant - see LAUGHINGFISH, Frailty & Shed Blood
+// FastAverageColor returns an average, not a dominant color
+async function getAverageColor(imgUrl){
+  const fastAvgColor = new FastAverageColor();
+  const ignoredColors = [[255, 255, 255, 255], [0, 0, 0, 255]];
+  try {
+    const color = await fastAvgColor.getColorAsync(imgUrl, {
+      ignoredColor: [ignoredColors],
+    });
+    return color.hex; // Returns the resolved color value
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 
 export const getPlaylist = async() => {
   try {
@@ -93,6 +102,8 @@ export const getPlaylist = async() => {
         artist_id: item.track.artists[0].id,
         artist_genre: "",
         album_title: item.track.album.name,
+        image_url: item.track.album.images[0].url, //cover art
+        album_color: ""
       }));
 
       // Spotify does not record album genre for albums or songs
@@ -100,14 +111,16 @@ export const getPlaylist = async() => {
       // Note: this process does not remove unused artist/genre pairings from localstorage.
       let artistToGenreMapping = localStorage.getItem("artistToGenre");
       artistToGenreMapping = artistToGenreMapping ? JSON.parse(artistToGenreMapping) : {};
+
       for(let item of newPlaylist){
         if(!artistToGenreMapping[item.artist_name]){ // artist genre wasn't stored locally
           const genre = await getArtistGenreFromArtistID(item.artist_id, accessToken);
           artistToGenreMapping[item.artist_name] = genre;
-          item.artist_genre = genre;
         }
         item.artist_genre = artistToGenreMapping[item.artist_name];
+        item.album_color = await getAverageColor(item.image_url);
       }
+
       localStorage.setItem("artistToGenre", JSON.stringify(artistToGenreMapping));
       localStorage.setItem("playlist", JSON.stringify(newPlaylist));
       return newPlaylist;

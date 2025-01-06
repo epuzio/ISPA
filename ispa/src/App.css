@@ -110,7 +110,23 @@ li:hover {
   text-decoration: underline;
 }
 
-.scrollBar{
-  width:30%;
-  height:100%;
+.scrollBar {
+  width: 300px; /* Fixed width for the scroll bar */
+  height: 100vh; /* Full viewport height */
+  position: fixed; /* Fixes it to the left */
+  top: 0;
+  left: 0;
+}
+
+.albumModelContainer {
+  height: 60%; /* Takes full height of its container */
+  width: 100vh - 300px;
+  justify-content: center; /* Centers content horizontally */
+  align-items: right; /* Centers content vertically */
+  background: green;
+}
+
+.screen {
+  display: flex; /* Enables Flexbox layout */
+  height: 100vh; /* Full viewport height */
 }
