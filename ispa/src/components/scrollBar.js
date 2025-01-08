@@ -1,11 +1,17 @@
-import React, { useState, useEffect, useQuery } from 'react';
+import React, { useState, useEffect, useQuery,useContext } from 'react';
 import './scrollBar.css';
 import { getGenreFont} from "./albumStyles";
 import {getPlaylist} from "./spotifyAPI.js";
+import { AlbumContext } from './albumContext'; // Pass selected album from scrollbar to 3js model
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
-  // const [albumColors, setAlbumColors] = useState([]);
+  const { setSelectedAlbum } = useContext(AlbumContext);
+  // const context = useContext(AlbumContext);
+  // console.log("CONTEX", context);
+
+  // const { selectedAlbum, setSelectedAlbum } = AlbumProvider(); 
+  // const [selectedAlbum, setSelectedAlbum] = useState(playlist[0]);
 
   useEffect(() => {
     const fetchPlaylist = async () => {
@@ -20,17 +26,10 @@ export default function ScrollBar() {
     fetchPlaylist();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchColor = async () => {
-  //     for (const album of playlist) {
-  //       const color = await getAverageColor(album.image_url);
-  //       albumColors.push({[`${album.artist_id}-${album.album_title}`]: color});
-  //       setAlbumColors(albumColors);
-  //       // newColors[`${album.artist_id}-${album.album_title}`] = color;
-  //     }
-  //   }
-  //   fetchColor();
-  // }, [playlist]);
+  const changeAlbum = (album) => {
+    console.log("select album:", album);
+    setSelectedAlbum(album); // Update the active album in the context
+  };
 
   return (
     <div className="scrollElement">
@@ -40,8 +39,10 @@ export default function ScrollBar() {
           style={{
             fontFamily: getGenreFont(album.artist_genre),
             backgroundColor: album.album_color,
-            // backgroundColor: getAverageColor(album.image_url),
-            // backgroundColor: getYearColor(album.release_date),
+          }}
+
+          onClick={() => {
+            changeAlbum(album);
           }}
         >
           <section id={`${album.artist_id}-${album.album_title}`}>
@@ -51,6 +52,7 @@ export default function ScrollBar() {
           </section>
         </div>
       ))}
+
     </div>
   );
 }

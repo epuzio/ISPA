@@ -1,18 +1,20 @@
 import './App.css';
 import ScrollBar from './components/scrollBar';
-import Model from './album/albumModel';
-
+import Scene from './album/scene';
+import { AlbumProvider } from './components/albumContext';
 
 function App() {
   return (
-    <div className='screen'>
-      <div className='scrollBar'>
-        <ScrollBar/>
+    <AlbumProvider>
+      <div className='screen'>
+        <div className='scrollBar'>
+          <ScrollBar/>
+        </div>
+        <div className='albumModelContainer'>
+          <Scene/>
+        </div>
       </div>
-      <div className='albumModelContainer'>
-        <Model/>
-      </div>
-    </div>
+    </AlbumProvider>
   );
 }
 
