@@ -7,12 +7,8 @@ import { AlbumContext } from './albumContext'; // Pass selected album from scrol
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
   const { setSelectedAlbum } = useContext(AlbumContext);
-  // const context = useContext(AlbumContext);
-  // console.log("CONTEX", context);
-
-  // const { selectedAlbum, setSelectedAlbum } = AlbumProvider(); 
-  // const [selectedAlbum, setSelectedAlbum] = useState(playlist[0]);
-
+  const [query, setQuery] = useState("");
+  
   useEffect(() => {
     const fetchPlaylist = async () => {
         const playlistData = await getPlaylist();
@@ -33,26 +29,39 @@ export default function ScrollBar() {
 
   return (
     <div className="scrollElement">
-      {playlist.map((album) => (
-        <div
-          key={`${album.artist_id}-${album.album_title}`}
-          style={{
-            fontFamily: getGenreFont(album.artist_genre),
-            backgroundColor: album.album_color,
-          }}
-
-          onClick={() => {
-            changeAlbum(album);
-          }}
-        >
-          <section id={`${album.artist_id}-${album.album_title}`}>
-            <div className="title">{album.album_title}</div>
-            <div>{album.release_date}</div>
-            <div className="artist">{album.artist_name}</div>
-          </section>
-        </div>
-      ))}
-
+      {/* Search Bar */}
+      <input type="text" placeholder={"Search..."} onChange={(e) => setQuery(e.target.value)}/>
+      <div>
+        {playlist.filter((album) => {
+          if (query === "") {
+            return album;
+          } else if (
+            album.album_title.toLowerCase().includes(query.toLowerCase()) ||
+            album.artist_name.toLowerCase().includes(query.toLowerCase())
+          ) {
+            return album;
+          }
+        }).map((album, index) => (
+          <div
+            key={`${album.artist_id}-${album.album_title}`}
+            style={{
+              fontFamily: getGenreFont(album.artist_genre),
+              backgroundColor: album.album_color,
+            }}
+  
+            onClick={() => {
+              changeAlbum(album);
+            }}
+          >
+            <section id={`${album.artist_id}-${album.album_title}`}>
+              <div className="number">{index}</div>
+              <div className="title">{album.album_title}</div>
+              <div>{album.release_date}</div>
+              <div className="artist">{album.artist_name}</div>
+            </section>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

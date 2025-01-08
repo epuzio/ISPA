@@ -1,35 +1,33 @@
-import { Suspense, useContext } from 'react'
+import { Suspense, useContext, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Environment } from '@react-three/drei'
+import { Environment, useHelper } from '@react-three/drei'
 import { Stats, OrbitControls } from '@react-three/drei'
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper';
 import { AlbumContext, AlbumProvider } from '../components/albumContext';
 
 import Model from './model.js'
+import { AmbientLight, pointLight } from 'three';
 
 export default function Scene() {
   const {selectedAlbum} = useContext(AlbumContext);
-  // let modelVariables;
-  // if(!selectedAlbum){
-  //   modelVariables = {
-  //     album_color: "#afc2d7",
-  //     image_url: "https://i.scdn.co/image/ab67616d0000b2730570ba8e8901c557d2e823b9"
-  //   }
-  // } else{
-  //   modelVariables = selectedAlbum;
-  // }
-
+  
   return (
-      <Canvas>
+      <Canvas camera={{ 
+        position: [2, 0, 3], 
+      }}>
+        <color attach="background" args={['0xffffff']} />
+        <pointLight position={[1, 2, .25]} intensity={4} color={"0xffffff"} />
+        <ambientLight intensity={0.75} />
         <Suspense fallback={null}>
           <Model 
             album_color={selectedAlbum.album_color}
             image_url={selectedAlbum.image_url}
           />
-          {/* <Environment preset="sunset" background /> */}
         </Suspense>
         <OrbitControls />
             <Stats />
             </Canvas>
-
   )
 }
+
+
