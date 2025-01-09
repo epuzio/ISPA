@@ -2,25 +2,35 @@ import { Suspense, useContext, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Environment, useHelper } from '@react-three/drei'
 import { Stats, OrbitControls } from '@react-three/drei'
-import { AlbumContext, AlbumProvider } from '../components/albumContext';
+// import { AlbumContext, AlbumProvider } from '../components/albumContext';
+import { AlbumNavContext, AlbumNavProvider } from '../components/albumNavContext';
 
 import Model from './model.js'
 import { AmbientLight, pointLight } from 'three';
 
 export default function Scene() {
-  const {selectedAlbum} = useContext(AlbumContext);
-  
+  const { leftAlbum, rightAlbum, shuffleAlbum, currentAlbum, filteredPlaylist, shuffleAlbums, changeAlbums } = useContext(AlbumNavContext);
+
   const handleClickLeft = () => {
-    console.log("left click");
+    const albumIndex = filteredPlaylist.selectedFilteredPlaylist.findIndex(
+      (album) => album === leftAlbum.selectedLeftAlbum
+    );
+    changeAlbums(leftAlbum.selectedLeftAlbum, albumIndex, filteredPlaylist.selectedFilteredPlaylist);
   };
 
   const handleClickShuffle = () => {
-    console.log("shuffle");
+    const albumIndex = filteredPlaylist.selectedFilteredPlaylist.findIndex(
+      (album) => album === shuffleAlbum.selectedShuffleAlbum
+    );
+    changeAlbums(shuffleAlbum.selectedShuffleAlbum, albumIndex, filteredPlaylist.selectedFilteredPlaylist);
   };
 
 
   const handleClickRight = () => {
-    console.log("right click");
+    const albumIndex = filteredPlaylist.selectedFilteredPlaylist.findIndex(
+      (album) => album === rightAlbum.selectedRightAlbum
+    );
+    changeAlbums(rightAlbum.selectedRightAlbum, albumIndex, filteredPlaylist.selectedFilteredPlaylist);
   };
 
   return (
@@ -35,8 +45,8 @@ export default function Scene() {
           <ambientLight intensity={0.75} />
           <Suspense fallback={null}>
             <Model 
-              album_color={selectedAlbum.album_color}
-              image_url={selectedAlbum.image_url}
+              album_color={currentAlbum.selectedAlbum.album_color}
+              image_url={currentAlbum.selectedAlbum.image_url}
             />
           </Suspense>
           <OrbitControls />

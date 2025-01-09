@@ -2,32 +2,35 @@ import React, { useState, useEffect, useQuery,useContext } from 'react';
 import './scrollBar.css';
 import { getGenreFont} from "./albumStyles";
 import {getPlaylist} from "./spotifyAPI.js";
-import { AlbumContext } from './albumContext'; // Pass selected album from scrollbar to 3js model
 import { AlbumNavContext } from './albumNavContext.js'; // Pass left/right albums based on search query
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
-  const { selectedAlbum, setSelectedAlbum } = useContext(AlbumContext);
-  const { leftAlbum, shuffleAlbum, rightAlbum } = useContext(AlbumNavContext);
+  const { leftAlbum, rightAlbum, shuffleAlbum, currentAlbum, filteredPlaylist, changeAlbums } = useContext(AlbumNavContext);
   const {selectedLeftAlbum, setSelectedLeftAlbum} = leftAlbum;
   const {selectedShuffleAlbum, setSelectedShuffleAlbum} = shuffleAlbum;
   const {selectedRightAlbum, setSelectedRightAlbum} = rightAlbum;
-  console.log("NEW NAV:", leftAlbum, shuffleAlbum, rightAlbum); // Verify data here
+  const {selectedAlbum, setSelectedAlbum} = currentAlbum;
+  const {selectedFilteredPlaylist, setSelectedFilteredPlaylist} = filteredPlaylist;
 
-  const getFilteredPlaylist = () => {
-    return playlist.filter((album) => {
+  const [query, setQuery] = useState("");
+
+  // Filter playlist if search query changes
+  useEffect(() => {
+    const newPlaylist = playlist.filter((album) => {
       if (query === "") {
-        return album;
+        return true; // Include all albums if query is empty
       }
       return (
         album.album_title.toLowerCase().includes(query.toLowerCase()) ||
         album.artist_name.toLowerCase().includes(query.toLowerCase())
       );
     });
-  };
 
-  const [query, setQuery] = useState("");
-  
+    setSelectedFilteredPlaylist(newPlaylist);
+  }, [query, playlist]);
+
+  // Fetch playlist data
   useEffect(() => {
     const fetchPlaylist = async () => {
         const playlistData = await getPlaylist();
@@ -37,43 +40,15 @@ export default function ScrollBar() {
           console.error("Error fetching spotify playlist data");
         }
       };
-  
     fetchPlaylist();
   }, []);
-
-
-  
-
-  const changeAlbums = (album, index) => {
-    const filteredPlaylist = getFilteredPlaylist();
-    setSelectedAlbum(album);
-    if(filteredPlaylist.length == 1) { // One album in query (cannot trigger changeAlbums if 0 in query)
-      setSelectedLeftAlbum(album);
-      setSelectedShuffleAlbum(album);
-      setSelectedRightAlbum(album);
-      return;
-    }
-
-    const prevAlbum = index != 0 ? filteredPlaylist[index - 1] : filteredPlaylist[filteredPlaylist.length - 1];
-    const nextAlbum = index != filteredPlaylist.length - 1 ? filteredPlaylist[index + 1] : 0;
-    let shuffleIndex;
-    while(!shuffleIndex || shuffleIndex == index) { // Reshufflle if selected index matches random index
-      shuffleIndex = Math.floor(Math.random() * filteredPlaylist.length);
-    }
-    const shuffleAlbum = filteredPlaylist[shuffleIndex];
-    
-    setSelectedLeftAlbum(prevAlbum);
-    setSelectedShuffleAlbum(shuffleAlbum);
-    setSelectedRightAlbum(nextAlbum);
-  };
-
 
   return (
     <div className="scrollElement">
       {/* Search Bar */}
       <input type="text" placeholder={"Search..."} onChange={(e) => setQuery(e.target.value)}/>
-      <ol>
-      {getFilteredPlaylist().map((album, index) => (
+      <div>
+      {selectedFilteredPlaylist.map((album, index) => (
           <div
             key={`${album.artist_id}-${album.album_title}`}
             style={{
@@ -82,7 +57,8 @@ export default function ScrollBar() {
             }}
   
             onClick={() => {
-              changeAlbums(album, index);
+              // getFilteredPlaylist();
+              changeAlbums(album, index, selectedFilteredPlaylist);
             }}
           >
             <section id={`${album.artist_id}-${album.album_title}`}>
@@ -93,7 +69,7 @@ export default function ScrollBar() {
             </section>
           </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 }
