@@ -12,12 +12,12 @@ import { TextureLoader } from 'three'
 //   return albumToColor["Modal Soul"];
 // }
 
-function getImageFromMap(){ // TOFIX: change color based on an active object
-  let playlist = localStorage.getItem("playlist");
-  playlist = playlist ? JSON.parse(playlist) : {};
-  console.log("out", playlist[0].image_url);
-  return playlist[134].image_url;
-}
+// function getImageFromMap(){ // TOFIX: change color based on an active object
+//   let playlist = localStorage.getItem("playlist");
+//   playlist = playlist ? JSON.parse(playlist) : {};
+//   console.log("out", playlist[0].image_url);
+//   return playlist[134].image_url;
+// }
 
 export default function Model({ album_color, image_url }) {
 
@@ -35,17 +35,12 @@ export default function Model({ album_color, image_url }) {
 
   const plastic = new THREE.MeshToonMaterial({
     color: 0xd6d6d6,
-    metalness: 0.1,
-    roughness: 0.5,
   });
   const blackPlastic = new THREE.MeshToonMaterial({
     color: 0x333333,
-    metalness: 0.8,
   });
   const metal = new THREE.MeshToonMaterial({
     color: 0x666666,
-    metalness: 1,
-    roughness: 0.0,
   });
   
   let pos = [.85, 0, 0]; //move center to origin
