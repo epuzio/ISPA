@@ -2,28 +2,30 @@ import { FastAverageColor } from 'fast-average-color';
 
 // Map genres to fonts
 const genreFont = new Map([
-  ["countrygaze", "Hoefler Text"], // Ethel Cain
-  ["pop", "Roboto"],
+  ["countrygaze", "Rock Salt, cursive"], // Ethel Cain
+  ["pop", "Arial"], 
+  ["candy pop", "Arial"], //Charli XCX
   ["indie pop", "Roboto"],
   ["bedroom pop", "Roboto"],
   ["rap", "Roboto"],
   ["hyperpop", "Roboto"],
   ["ai", "Roboto"], // Arca
-  ["dariacore", "Arial"], // Jane Remover
+  ["art rock", "Rubik Bubbles, serif"], 
+  ["dariacore", "Rubik Glitch Pop, serif"], // Jane Remover
   ["bubblegum bass", "Roboto"], //SOPHIE, A.G. Cook
   ["edm", "Roboto"],
-  ["breakcore", "Roboto"],
+  ["breakcore", "Jersey 10, serif"],
   ["hardcore", "Roboto"],
-  ["cloud rap", "Roboto"], // Snow Strippers, Bladee
+  ["cloud rap", "Badeen Display, Regular 400"], // Snow Strippers, Bladee
   ["rap", "Times New Roman"],
   ["hip hop", "Roboto"],
   ["rock", "Roboto"],
   ["indie rock", "Roboto"],
   ["hyper-rock", "Roboto"], // Ada Rook, Dorian Electra
   ["punk", "Roboto"],
-  ["grunge", "Roboto"],
+  ["grunge", "Rubik Vinyl"],
   ["emo", "Roboto"], // American Football
-  ["folk", "Brush Script MT"]
+  ["folk", "Rock Salt, cursive"]
 ]);
 
 export function getGenreFont(spotifyGenres){
@@ -42,58 +44,8 @@ export function getGenreFont(spotifyGenres){
       }
     }
   }
-  return "Calibri"; //default if nothing is found
+  return "Comic Sans"; //default if nothing is found
 }
-
-
-//  // Find the average color of the album cover art given the URL
-//  let albumToColorMapping = localStorage.getItem("albumToColor");
-//  albumToColorMapping = albumToColorMapping ? JSON.parse(albumToColorMapping) : {};
-//  for(let item of newPlaylist){
-//    if(!albumToColorMapping[item.image_url]){ // image color wasn't stored locally
-//      const colors = await getArtistGenreFromArtistID(item.artist_id, accessToken);
-//      // artistToGenreMapping[item.artist_name] = genre;
-//      // item.artist_genre = genre;
-//    }
-//    // item.artist_genre = artistToGenreMapping[item.artist_name];
-//  }
-
-
-
-{/* <script src="https://unpkg.com/fast-average-color/dist/index.browser.min.js"></script>
-<script>
-    const fac = new FastAverageColor();
-
-    fac.getColorAsync('./image.jpg')
-        .then(color => {
-            container.style.backgroundColor = color.rgba;
-            container.style.color = color.isDark ? '#fff' : '#000';
-
-            console.log('Average color', color);
-        })
-        .catch(e => {
-            console.log(e);
-        });
-</script>
- */}
-
-// export const getAverageColor = async (imgUrl) => {
-//   const fastAvgColor = new FastAverageColor();
-//   const ignoredColors = [[255, 255, 255, 255], [0, 0, 0, 255]];
-
-//   fastAvgColor.getColorAsync(imgUrl, {
-//     ignoredColor: [ignoredColors]
-//   })
-//   .then(color => {
-//     console.log("average color:", color.hex);
-//     return color.hex;
-//   })
-//   .catch(e => {
-//     console.log(e);
-//     return "#13a2b4";
-//   });
-// };
-
 
 export function getYearColor(release_date){
   let albumDate = new Date(release_date);

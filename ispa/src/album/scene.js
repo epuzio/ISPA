@@ -33,6 +33,10 @@ export default function Scene() {
     changeAlbums(rightAlbum.selectedRightAlbum, albumIndex, filteredPlaylist.selectedFilteredPlaylist);
   };
 
+  const handleClickAbout = () => {
+    console.log("About section goes here, change model?");
+  }
+
   return (
       <div width="100vh" height="100vh">
         <Canvas 
@@ -83,6 +87,38 @@ export default function Scene() {
             right
           </button>
         </div>
+      </div>
+
+
+      <div className='links'
+      style={{
+        justifyContent: "center",
+        position: "absolute",
+        alignItems: "right",
+        top: "0px",
+        right: "0px",
+        padding:"10px",
+        zIndex: "10000"
+      }}
+      > 
+      {/* TODO: Open an explanation of the project */} 
+        <button type="button" onClick={handleClickAbout}>
+            about
+          </button>
+
+       {/* Spotify Link Button */} 
+        <a href="https://open.spotify.com/playlist/62U2aL9NGYzQm5Y76bdZc8?si=4e6b62b6fe814b9d" target="_blank">
+          <button type="button">
+            listen on spotify
+          </button>
+        </a>
+
+      {/* Github link */}
+      <a href="https://github.com/epuzio/ISPA" target="_blank">
+          <button type="button">
+            source code
+          </button>
+        </a>
       </div>
     </div>
             

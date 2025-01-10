@@ -3,6 +3,7 @@ import './scrollBar.css';
 import { getGenreFont} from "./albumStyles";
 import {getPlaylist} from "./spotifyAPI.js";
 import { AlbumNavContext } from './albumNavContext.js'; // Pass left/right albums based on search query
+import Font, { Text } from 'react-font'
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
@@ -62,9 +63,10 @@ export default function ScrollBar() {
             }}
           >
             <section id={`${album.artist_id}-${album.album_title}`}>
-              <div className="number">{index}</div>
+              {/* <div className="number">{index}</div> */}
               <div className="title">{album.album_title}</div>
-              <div>{album.release_date}</div>
+              {/* <div>{album.release_date}</div>
+              <div>{getGenreFont(album.artist_genre)}</div> */}
               <div className="artist">{album.artist_name}</div>
             </section>
           </div>
