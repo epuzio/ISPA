@@ -1,4 +1,5 @@
 /* Default React App CSS */
+
 .App {
   text-align: center;
 }
@@ -111,7 +112,7 @@ li:hover {
 }
 
 .scrollBar {
-  width: 350px; /* Fixed width for the scroll bar */
+  width: 400px; /* Fixed width for the scroll bar */
   height: 100vh; /* Full viewport height */
   justify-content: center; /* Centers content horizontally */
   align-items: left; /* Centers content vertically */
@@ -131,3 +132,4 @@ li:hover {
   display: flex; /* Enables Flexbox layout */
   height: 100vh; /* Full viewport height */
 }
+

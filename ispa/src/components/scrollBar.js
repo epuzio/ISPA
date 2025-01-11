@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useQuery,useContext } from 'react';
 import './scrollBar.css';
-import { getGenreFont} from "./albumStyles";
+import { getGenreFont, getTrimmedTitle, getTextColor, allGenres} from "./albumStyles";
 import {getPlaylist} from "./spotifyAPI.js";
 import { AlbumNavContext } from './albumNavContext.js'; // Pass left/right albums based on search query
-import Font, { Text } from 'react-font'
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
@@ -45,15 +44,19 @@ export default function ScrollBar() {
   }, []);
 
   return (
+    
     <div className="scrollElement">
+      {/* Set google fonts */}
       {/* Search Bar */}
       <input type="text" placeholder={"Search..."} onChange={(e) => setQuery(e.target.value)}/>
       <div>
       {selectedFilteredPlaylist.map((album, index) => (
           <div
             key={`${album.artist_id}-${album.album_title}`}
+            className="albumStyle"
             style={{
               fontFamily: getGenreFont(album.artist_genre),
+              fontWeight: 400,
               backgroundColor: album.album_color,
             }}
   
@@ -64,10 +67,22 @@ export default function ScrollBar() {
           >
             <section id={`${album.artist_id}-${album.album_title}`}>
               {/* <div className="number">{index}</div> */}
-              <div className="title">{album.album_title}</div>
+              {/* <div className="title">{album.album_title}</div> */}
               {/* <div>{album.release_date}</div>
               <div>{getGenreFont(album.artist_genre)}</div> */}
-              <div className="artist">{album.artist_name}</div>
+            <div>{getGenreFont(album.artist_genre)}</div>
+            <div className="title"
+              style={{
+                color: getTextColor(album.album_color)
+              }}>
+              {getTrimmedTitle(album.album_title)}
+            </div>
+            <div className="artist"
+              style={{
+                color: getTextColor(album.album_color)
+              }}>
+            {album.artist_name}
+            </div>
             </section>
           </div>
         ))}

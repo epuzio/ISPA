@@ -1,8 +1,11 @@
 /* Elements in ScrollBar */
+
+
+
 section {
     display: flex;
-    height: 40px;
-    font-size: 20px;
+    height: 10px;
+    font-size: 16px;
     font-weight: bold;
     justify-content: space-between;
     align-items:center;
@@ -11,15 +14,17 @@ section {
 
 .title {
     align-items: left;
+    text-align: left;
 }
 
 .artist {
     align-items: right;
+    text-align: right;
 }
 
 .scrollElement{
     height: 100%;
-    width: 350px;
+    width: 400px;
     overflow-y: scroll;
 }
 
@@ -40,6 +45,12 @@ input[type=text] {
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
   }
+
+.albumStyle{
+    padding: 10px;
+    /* margin: 10px; */
+
+}
 
 /* .nav {
     display: flex;
