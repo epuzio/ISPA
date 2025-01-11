@@ -1,4 +1,3 @@
-import { FastAverageColor } from 'fast-average-color';
 import WebFont from 'webfontloader';
 
 function loadFont(fontFamily) {
@@ -12,50 +11,53 @@ function loadFont(fontFamily) {
 // Map genres to fonts
 const genreFont = new Map([
   ["countrygaze", "Rock Salt"], // Ethel Cain
-  ["pop", "'Open Sans', sans-serif"], 
   ["candy pop", "Arial"], //Charli XCX
-  ["indie pop", "Major Mono Display"], // Caroline Polachek, Chappell Roan
-  ["bedroom pop", "'Syne', tactile"], // Hana Vu
+  ["indie pop", "Syne"], // Caroline Polachek, Chappell Roan
+  ["bedroom pop", "East Sea Dokdo"], // Hana Vu
   ["rap", "Roboto"],
-  ["hyperpop", "Roboto"],
-  ["ai", `Syne`], // Arca
-  ["art rock", "'Rubik Bubbles', serif"], 
+  ["r&b", "Bahianita"], // SZA
+  ["jungle", "Jockey One"], // Nia Archives
+  ["ambient", "Helvetica Neue"],
+  ["ai", `Major Mono Display`], // Arca
+  ["art rock", "Gemunu Libre"], 
   ["dariacore", `Roboto_400Regular`], // Jane Remover
-  ["bubblegum bass", "Roboto"], //SOPHIE, A.G. Cook
-  ["edm", "Roboto"],
-  ["breakcore", "Jersey 10, serif"],
-  ["hardcore", "Roboto"],
-  ["cloud rap", `Noto Serif`], // Snow Strippers, Bladee
-  ["rap", "Times New Roman"],
-  ["hip hop", "Roboto"],
-  ["rock", "Roboto"],
-  ["indie rock", "Roboto"],
-  ["hyper-rock", `'Helvetica', bold`], // Ada Rook, Dorian Electra
-  ["punk", "Roboto"],
+  ["bubblegum bass", "Bowlby One SC"], //SOPHIE, A.G. Cook
+  ["edm", "Goldman"],
+  ["breakcore", "Times New Roman"], // Nanoray
+  ["hardcore", "Rubik Glitch"], 
+  ["cloud rap", "Almendra"], // Snow Strippers, Bladee
+  ["rap", "Eagle Lake"],
+  ["hip hop", "Dokdo"],
+  ["rock", "Stalinist One"],
+  ["indie rock", "Amarante"],
+  ["hyper-rock", "Archivo Black"], // Ada Rook, Dorian Electra
+  ["punk", "Chelsea Market"],
   ["grunge", "Rubik Vinyl"],
   ["emo", "Roboto"], // American Football
-  ["folk", "Rock Salt, cursive"]
+  ["folk", "Shadows Into Light"]
 ]);
 
 export function getGenreFont(spotifyGenres){
   // check combined genres (i.e.: folk rock)
-  for(let genre of spotifyGenres){
-    if(genreFont.has(genre)){
-      const font = genreFont.get(genre);
-      loadFont(font);
-      return genreFont.get(genre);
+  if(spotifyGenres.length > 1){
+    for(let genre of spotifyGenres){
+      if(genreFont.has(genre)){
+        const font = genreFont.get(genre);
+        loadFont(font);
+        return genreFont.get(genre);
+      }
     }
-  }
-  // check broad genres (i.e.: folk, then rock, or k, pop as opposed to k-pop)
-  for(let genre of spotifyGenres){
-    let broadGenres = genre.split(/[ -]/);
-    for(let broadGenre of broadGenres){
-      if(genreFont.has(broadGenre)){
-        return genreFont.get(broadGenre);
+    // check broad genres (i.e.: folk, then rock, or k, pop as opposed to k-pop)
+    for(let genre of spotifyGenres){
+      let broadGenres = genre.split(" ");
+      for(let broadGenre of broadGenres){
+        if(genreFont.has(broadGenre)){
+          return genreFont.get(broadGenre);
+        }
       }
     }
   }
-  return "Georgia"; //default if nothing is found
+  return "Helvetica"; //default if nothing is found
 }
 
 export function getTrimmedTitle(title){
