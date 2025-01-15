@@ -56,9 +56,6 @@ export default function ScrollBar() {
       {/* CDs */}
       <div className="scrollElement">
         {selectedFilteredPlaylist.map((album, index) => (
-          <div className="albumRadius" style={{
-            backgroundColor: `color-mix(in srgb, ${album.album_color}, black 25%)`
-          }}>
             <div
               key={`${album.artist_id}-${album.album_title}`}
               className="albumStyle"
@@ -66,7 +63,7 @@ export default function ScrollBar() {
                 fontFamily: getGenreFont(album.artist_genre),
                 fontWeight: 400,
                 backgroundColor: album.album_color,
-                borderColor: `color-mix(in srgb, ${album.album_color}, black 25%)`
+                boxShadow: `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 25%)`
               }}
     
               onClick={() => {
@@ -89,7 +86,6 @@ export default function ScrollBar() {
               </div>
             </section>
             </div>
-          </div>
         ))}
       </div>
     </div>
