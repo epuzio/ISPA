@@ -22,13 +22,15 @@ section {
     text-align: right;
 }
 
-.scrollElement{
-    height: 100%;
-    width: 400px;
-    overflow-y: scroll;
+.searchBar{
+    position: "sticky";
+    top: "0px";
+    height: "50px";
 }
 
-.albums{
+.scrollElement{
+    height: 100%;
+    /* width: 400px; */
     overflow-y: scroll;
 }
 

@@ -42,7 +42,13 @@ export default function Model({ album_color, image_url }) {
   const metal = new THREE.MeshToonMaterial({
     color: 0x666666,
   });
-  
+
+  // window.addEventListener("resize", onWindowResize.bind(this));
+  // function onWindowResize() {
+  //   this.camera.aspect = window.innerWidth / window.innerHeight;
+  //   this.camera.updateProjectionMatrix();
+  //   this.renderer.setSize(window.innerWidth, window.innerHeight);
+  // }
   let pos = [.85, 0, 0]; //move center to origin
   return (
     <group dispose={null} position={pos}>

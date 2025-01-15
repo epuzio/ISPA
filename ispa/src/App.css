@@ -133,3 +133,10 @@ li:hover {
   height: 100vh; /* Full viewport height */
 }
 
+.wrap {
+  display: flex;
+  height: 100vh;
+}
+
+
+

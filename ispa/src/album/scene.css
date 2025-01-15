@@ -1,0 +1,23 @@
+
+.canvasElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    background-color: white;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: absolute;
+    inset: 0px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    z-index: 1;
+    background-color: rgb(146, 82, 82);
+}

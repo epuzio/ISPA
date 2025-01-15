@@ -44,13 +44,18 @@ export default function ScrollBar() {
   }, []);
 
   return (
-    <div className="scrollElement">
-      {/* Set google fonts */}
-      {/* <div dangerouslySetInnerHTML={{ __html: allGenres() }} />  */}
+    <div style={{height: "100vh"}}>
       {/* Search Bar */}
-      <input type="text" placeholder={"Search..."} onChange={(e) => setQuery(e.target.value)}/>
-      <div>
-      {selectedFilteredPlaylist.map((album, index) => (
+      <input 
+        className="searchBar" 
+        type="text" 
+        placeholder={"Search..."} 
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      
+      {/* CDs */}
+      <div className="scrollElement">
+        {selectedFilteredPlaylist.map((album, index) => (
           <div
             key={`${album.artist_id}-${album.album_title}`}
             className="albumStyle"
@@ -65,9 +70,7 @@ export default function ScrollBar() {
               changeAlbums(album, index, selectedFilteredPlaylist);
             }}
           >
-            <section id={`${album.artist_id}-${album.album_title}`}>
-            {/* <div>{getGenreFont(album.artist_genre)}</div>
-            <div>{album.artist_genre}</div> */}
+          <section id={`${album.artist_id}-${album.album_title}`}>
             <div className="title"
               style={{
                 color: getTextColor(album.album_color)
@@ -80,7 +83,7 @@ export default function ScrollBar() {
               }}>
             {album.artist_name}
             </div>
-            </section>
+          </section>
           </div>
         ))}
       </div>
