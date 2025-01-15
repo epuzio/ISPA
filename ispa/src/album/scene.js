@@ -5,7 +5,7 @@ import { Stats, OrbitControls } from '@react-three/drei'
 // import { AlbumContext, AlbumProvider } from '../components/albumContext';
 import { AlbumNavContext, AlbumNavProvider } from '../components/albumNavContext';
 import "./scene.css";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Model from './model.js'
 import { AmbientLight, pointLight } from 'three';
 
@@ -41,35 +41,29 @@ export default function Scene() {
   return (
     <div className='canvasElement'>
       <div className='buttons'
-      style={{
-        justifyContent: "center",
-        position: "absolute",
-        alignItems: "left",
-        top: "80%",
-        padding:"10px",
-        zIndex: "10000"
-      }}
+        style={{
+          justifyContent: "center",
+          position: "absolute",
+          alignItems: "left",
+          top: "80%",
+          padding:"10px",
+          zIndex: "10000"
+        }}
       > 
         {/* Left Button */}
-        <div>
-          <button type="button" onClick={handleClickLeft}>
-            left
-          </button>
-        </div>
+        <button class="button cdMenuButton" onClick={handleClickLeft}>
+          <i class="fa fa-fast-backward"></i>
+        </button>
 
         {/* Shuffle Button */} 
-        <div>
-          <button type="button" onClick={handleClickShuffle}>
-            shuffle
-          </button>
-        </div>
+        <button class="button cdMenuButton" onClick={handleClickShuffle}>
+          <i class="fa-solid fa-shuffle"></i>
+        </button>
 
         {/* Right Button */} 
-        <div>
-          <button type="button" onClick={handleClickRight}>
-            right
-          </button>
-        </div>
+        <button class="button cdMenuButton" onClick={handleClickRight}>
+          <i class="fa fa-fast-forward"></i>
+        </button>
       </div>
 
       <div style={{width: "100%", height: "100%"}}>
@@ -95,34 +89,23 @@ export default function Scene() {
       
 
 
-    <div className='links'
-    style={{
-      justifyContent: "right",
-      position: "absolute",
-      alignItems: "right",
-      top: "0px",
-      right: "0px",
-      padding:"10px",
-      zIndex: "10000",
-      backgroundColor: "rgb(79, 78, 32)"
-    }}
-    > 
+    <div className='links' class={"topButtons"}>
     {/* TODO: Open an explanation of the project */} 
-      <button type="button" onClick={handleClickAbout}>
-          about
+      <button title="About" class="button topMenuButton" onClick={handleClickAbout}>
+        <i class="fa-solid fa-circle-question"></i>
         </button>
 
      {/* Spotify Link Button */} 
       <a href="https://open.spotify.com/playlist/62U2aL9NGYzQm5Y76bdZc8?si=4e6b62b6fe814b9d" target="_blank">
-        <button type="button">
-          listen on spotify
+        <button title="Listen on Spotify" class="button topMenuButton">
+          <i class="fa-brands fa-spotify"></i>
         </button>
       </a>
 
-    {/* Github link */}
+    {/* Github source code */}
     <a href="https://github.com/epuzio/ISPA" target="_blank">
-        <button type="button">
-          source code
+        <button title="Source Code" class="button topMenuButton">
+        <i class="fa-brands fa-github"></i>
         </button>
       </a>
     </div>

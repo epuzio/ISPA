@@ -56,34 +56,39 @@ export default function ScrollBar() {
       {/* CDs */}
       <div className="scrollElement">
         {selectedFilteredPlaylist.map((album, index) => (
-          <div
-            key={`${album.artist_id}-${album.album_title}`}
-            className="albumStyle"
-            style={{
-              fontFamily: getGenreFont(album.artist_genre),
-              fontWeight: 400,
-              backgroundColor: album.album_color,
-            }}
-  
-            onClick={() => {
-              // getFilteredPlaylist();
-              changeAlbums(album, index, selectedFilteredPlaylist);
-            }}
-          >
-          <section id={`${album.artist_id}-${album.album_title}`}>
-            <div className="title"
+          <div className="albumRadius" style={{
+            backgroundColor: `color-mix(in srgb, ${album.album_color}, black 25%)`
+          }}>
+            <div
+              key={`${album.artist_id}-${album.album_title}`}
+              className="albumStyle"
               style={{
-                color: getTextColor(album.album_color)
-              }}>
-              {getTrimmedTitle(album.album_title)}
+                fontFamily: getGenreFont(album.artist_genre),
+                fontWeight: 400,
+                backgroundColor: album.album_color,
+                borderColor: `color-mix(in srgb, ${album.album_color}, black 25%)`
+              }}
+    
+              onClick={() => {
+                // getFilteredPlaylist();
+                changeAlbums(album, index, selectedFilteredPlaylist);
+              }}
+            >
+            <section id={`${album.artist_id}-${album.album_title}`}>
+              <div className="title"
+                style={{
+                  color: getTextColor(album.album_color)
+                }}>
+                {getTrimmedTitle(album.album_title)}
+              </div>
+              <div className="artist"
+                style={{
+                  color: getTextColor(album.album_color)
+                }}>
+              {album.artist_name}
+              </div>
+            </section>
             </div>
-            <div className="artist"
-              style={{
-                color: getTextColor(album.album_color)
-              }}>
-            {album.artist_name}
-            </div>
-          </section>
           </div>
         ))}
       </div>

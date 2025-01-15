@@ -1,6 +1,10 @@
 /* Elements in ScrollBar */
 
-
+:root {
+   --cd-highlight: #b7b3b1;
+   --cd-shadow: #656565;
+   --cd-background: #8a8787;
+  }
 
 section {
     display: flex;
@@ -28,11 +32,6 @@ section {
     height: "50px";
 }
 
-.scrollElement{
-    height: 100%;
-    /* width: 400px; */
-    overflow-y: scroll;
-}
 
 input[type=text] {
     width: 100%;
@@ -48,9 +47,29 @@ input[type=text] {
     padding: 12px 20px 12px 40px;
   }
 
+.scrollElement{
+    height: 100%;
+    /* width: 400px; */
+    overflow-y: scroll;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+
 .albumStyle{
+    border: 5px solid;
+    border-color: black;
     padding: 10px;
-    /* margin: 10px; */
+    border-radius: .5rem;
+}
+
+.albumRadius{
+    /* border-top: 4px solid var(--cd-highlight); */
+    border-left: 20px solid var(--cd-background);
+    /* border-right: 4px solid var(--cd-background); */
+    border-bottom: 4px solid var(--cd-shadow);
+    /* padding: 10px; */
+    border-radius: .5rem;
 
 }
 
