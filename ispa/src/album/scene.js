@@ -82,7 +82,7 @@ export default function Scene() {
             />
           </Suspense>
           <OrbitControls />
-          <Stats />
+          {/* <Stats /> */}
         </Canvas>
       </div>
 

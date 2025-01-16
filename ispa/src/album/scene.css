@@ -70,6 +70,7 @@
     cursor: pointer;
     font-size: 1.5rem;
     color: var(--cdmenu-background);
+    transition: 0.2s;
 }
 
 .topMenuButton:hover{
@@ -93,5 +94,5 @@
     background: var(--cdbutton-shadow);
     box-shadow: inset -1px 2px 0px var(--cdbutton-hover-shadow), 
                 -1px 2px 0px var(--cdbutton-background);
-    /* transition: 0.3s; */
+    /* transition: 0.5s; */
 }

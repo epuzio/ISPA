@@ -52,8 +52,6 @@ export function AlbumNavProvider({ children }) {
     const [selectedFilteredPlaylist, setSelectedFilteredPlaylist] = useState([]);
     
     const changeAlbums = (album, index, filteredPlaylist) => {
-        // const filteredPlaylist = getFilteredPlaylist();
-        console.log("(change albums) Selected Album:", selectedAlbum);
         setSelectedAlbum(album);
         if(filteredPlaylist.length === 1) { // One album in query (cannot trigger changeAlbums if 0 in query)
             setSelectedLeftAlbum(album);
@@ -61,8 +59,6 @@ export function AlbumNavProvider({ children }) {
             setSelectedRightAlbum(album);
             return;
         }
-        console.log("index", index);
-        console.log("filtered playlist length", filteredPlaylist.length -1);
     
         const prevAlbum = index !== 0 ? filteredPlaylist[index - 1] : filteredPlaylist[filteredPlaylist.length - 1];
         const nextAlbum = (index !== (filteredPlaylist.length - 1)) ? filteredPlaylist[index + 1] : filteredPlaylist[0];

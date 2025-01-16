@@ -10,15 +10,15 @@ function App() {
       <div >
         <Split
             class="wrap"
-            sizes={[30, 70]}
+            sizes={[40, 60]}
             gutterStyle={() => ({
                 backgroundColor: "#8b8b8b",
-                width: "5px",
+                width: "8px",
                 height: "20%",
                 cursor: "col-resize",
                 top: "50%",
                 transform: "translateY(-50%)",
-                onHover: "backgroundColor: red"
+                flexShrink: 0, // Prevent shrinking in flex containers
             })}
             // minSize={[200, 300]}
             // expandToMin={false}
@@ -33,9 +33,17 @@ function App() {
                 gutter.style.backgroundColor = "#8b8b8b";
                 gutter.style.border = "10px solid white";
                 gutter.style.borderRadius = "50px 50px";
-                gutter.style.width = "10px";
+                gutter.style.width = "15px";
                 gutter.style.position = "relative";
                 gutter.style.cursor = "col-resize";
+                gutter.style.transition = "background-color 0.1s";
+
+                gutter.onmouseover = () => {
+                  gutter.style.backgroundColor = "#626262";
+                };
+                gutter.onmouseout = () => {
+                    gutter.style.backgroundColor = "#8b8b8b";
+                };
                 return gutter;
             }}
         >

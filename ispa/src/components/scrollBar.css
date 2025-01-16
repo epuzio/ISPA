@@ -4,6 +4,10 @@
    --cd-highlight: #b7b3b1;
    --cd-shadow: #656565;
    --cd-background: #8a8787;
+   --search-bar-background: #785050;
+    --search-bar-shadow: #573939;
+    --search-bar-highlight: #ba6767;
+    --search-bar-display: #457f87;
   }
 
 section {
@@ -13,55 +17,141 @@ section {
     font-weight: bold;
     justify-content: space-between;
     align-items:center;
-    padding: .5rem;
+    /* padding: .5rem; */
 }
 
-.title {
-    align-items: left;
-    text-align: left;
-}
 
-.artist {
-    align-items: right;
-    text-align: right;
-}
-
-.searchBar{
-    position: "sticky";
-    top: "0px";
-    height: "50px";
-}
 
 
 input[type=text] {
     width: 100%;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    box-shadow: inset 1px -2px 0px var(--cdbutton-shadow);
+    border: none; 
+    border-width:0px;
     font-size: 16px;
     background-color: white;
-    background-image: url('magnifying-glass-placeholder.png');
-    background-size: 16px;
-    background-position: 10px 10px; 
+    background-image: url('search-solid.png');
+    background-size: 15px;
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-  }
+    background-position: 12px center;
+
+    padding-left: 40px;
+    position: relative;
+}
 
 .scrollElement{
     height: 100%;
     overflow-y: scroll;
     margin: 0 auto;
     gap: 1rem;
+    background-color: white;
+    /* padding: 1rem; */
 }
 
+/* Individual Album CSS */
 .albumStyle{
-    border: 5px solid;
-    border-color: black;
-    padding: 10px;
-    border-right: 4px solid var(--cd-highlight);
-    border-top: 4px solid var(--cd-highlight);
-    border-left: 20px solid var(--cd-background);
+    width: 100%;
+    aspect-ratio: 8 / 1;
+    /* border-right: 4px solid var(--cd-highlight); */
+    /* border-top: 4px solid var(--cd-highlight); */
+    border-left: 10px solid var(--cd-background);
     border-bottom: 4px solid var(--cd-shadow);
-    border-radius: .5rem;
-    box-shadow: inset 0px 0px 0px 3px; 
+    /* border-radius: .5rem; */
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 0px 3px;    
+    text-align: center;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 5%;
+    padding-left: 5%;
+
+    position: relative;
+    margin-bottom: .2rem;
+
+    container-type: inline-size;
+    
 }
 
+.albumText{
+    text-align: center;
+    position: relative;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    resize: horizontal;
+
+    /* Text resize */
+    container-type: inline-size;
+    display: flex;
+    /* flex-wrap: wrap; */
+    font-size: 3cqw;
+    /* margin: 0 auto; */
+}
+
+.albumTitle{
+    /* align-items: center; */
+    /* display: flex; */
+    padding: 0;
+    align-items: left;
+    text-align: left;
+    @container(width < 500px)
+    {
+        flex-basis: 100%;
+    }
+    
+    /* justify-content: flex-end; */
+    
+}
+
+.albumArtist{
+    /* align-items: center; */
+    /* display: flex; */
+    /* padding: 0; */
+    align-items: right;
+    text-align: right;
+    @container(width < 500px)
+    {
+        flex-basis: 100%;
+    }
+    /* font-size: 1cqh; */
+    
+}
+
+/* Search bar div element */
+.searchBarBorders{
+    /* box-shadow: inset -1px 2px 0px var(--cdbutton-highlight), 
+                -1px 2px 0px var(--cdbutton-shadow); */
+    background: var(--cdbutton-background);
+    border: 0;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px; 
+    cursor: text; 
+    margin-bottom: 12px;
+}
+
+.searchBar{
+    position: sticky;
+    top: 0px;
+    height: 40px;
+    border-radius: 30px;
+    outline: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.scrollClass{
+    height: "100vh";
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background: white;
+}
