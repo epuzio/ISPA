@@ -78,8 +78,8 @@ input[type=text] {
 .albumText{
     text-align: center;
     position: relative;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: center;
+    gap: .5rem;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -88,38 +88,18 @@ input[type=text] {
     /* Text resize */
     container-type: inline-size;
     display: flex;
-    /* flex-wrap: wrap; */
-    font-size: 3cqw;
-    /* margin: 0 auto; */
+    font-size: 4cqw;
 }
 
 .albumTitle{
-    /* align-items: center; */
-    /* display: flex; */
-    padding: 0;
-    align-items: left;
-    text-align: left;
-    @container(width < 500px)
-    {
-        flex-basis: 100%;
-    }
-    
-    /* justify-content: flex-end; */
-    
+    align-items: center;
+    align-items: right;
+    text-align: right;    
 }
 
 .albumArtist{
-    /* align-items: center; */
-    /* display: flex; */
-    /* padding: 0; */
-    align-items: right;
-    text-align: right;
-    @container(width < 500px)
-    {
-        flex-basis: 100%;
-    }
-    /* font-size: 1cqh; */
-    
+    align-items: left;
+    text-align: left;
 }
 
 /* Search bar div element */
