@@ -61,7 +61,7 @@ export const reviews = {
     },
     "Exile In Guyville": {
         "review": `
-                    I wasn't expecting to like this as much as I did! Her lyricism/word choices are very complex for the subject matter. 
+                    I wasn't expecting to like this as much as I did! Liz Phair's lyricism/word choices are very complex for the subject matter. 
                     Her songs also have a rawness to them that resonates with me so rarely, and it sounds more personal here than
                     on albums like "brat" which received similar commercial praise for authenticity. The imagery of "Stratford on Guy" was
                     memorable in my first listen, and on repeated listens I've found myself drawn to the parables in "Divorce Song" and "Fuck and Run".
@@ -72,7 +72,7 @@ export const reviews = {
     },
     "food house": {
         "review": `
-                   I love Fraixom's lyricism. Food house would probably be incredible to experience live.
+                   Fraixom's lyricism never fails to amaze me. Food house would probably be incredible to experience live.
                   `,
         "favorite": false,
         "recommend": false,

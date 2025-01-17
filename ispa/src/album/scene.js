@@ -1,16 +1,19 @@
-import { Suspense, useContext, useRef } from 'react'
+import { Suspense, useContext, useEffect, useRef, useState} from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Environment, useHelper } from '@react-three/drei'
-import { Stats, OrbitControls } from '@react-three/drei'
+import { Stats, OrbitControls, Html } from '@react-three/drei'
 // import { AlbumContext, AlbumProvider } from '../components/albumContext';
 import { AlbumNavContext, AlbumNavProvider } from '../components/albumNavContext';
 import "./scene.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Model from './model.js'
-import { AmbientLight, pointLight } from 'three';
+// import { AmbientLight, pointLight } from 'three';
+import * as THREE from 'three';
 
 export default function Scene() {
   const { leftAlbum, rightAlbum, shuffleAlbum, currentAlbum, filteredPlaylist, shuffleAlbums, changeAlbums } = useContext(AlbumNavContext);
+  const controlsRef = useRef();
+  const canvasRef = useRef();
 
   const handleClickLeft = () => {
     const albumIndex = filteredPlaylist.selectedFilteredPlaylist.findIndex(
@@ -71,17 +74,54 @@ export default function Scene() {
           style={{height: `100vh`, width: '100%', position: `relative` }}
           camera={{ 
             position: [2, 0, 3], 
-          }}>
+          }}
+          ref={canvasRef}
+          >
+          <OrbitControls ref={controlsRef} />
           <color attach="background" args={['#ffffff']} />
           <pointLight position={[1, 2, .25]} intensity={4} color={"#ffffff"} />
           <ambientLight intensity={0.75} />
           <Suspense fallback={null}>
-            <Model 
-              album_color={currentAlbum.selectedAlbum.album_color}
-              image_url={currentAlbum.selectedAlbum.image_url}
-            />
+            <Model
+                  album_color={currentAlbum.selectedAlbum.album_color}
+                  image_url={currentAlbum.selectedAlbum.image_url}
+                  sticky_note_color={`color-mix(in srgb, ${currentAlbum.selectedAlbum.image_url}, black 50%)`}
+                />
+            <mesh 
+              pointerEvents='auto'
+            >
+              {/* <Html
+                style={{
+                  width: '10rem',
+                  height: '10rem',
+                  overflowY: 'scroll',
+                  pointerEvents: 'auto', // Allow interaction with the HTML
+                  overflow: 'auto', // Enable scrolling if content overflows
+                  backgroundColor: 'white', // Optional: Add a background color
+                  borderRadius: '10px', // Optional: Rounded corners
+                }}
+                castShadow
+                receiveShadow
+                transform
+                position={[-.7, 0, 0.6]} // Offset slightly above the mesh
+                rotation={[0, Math.PI / 3, 0]} // Match the rotation of the mesh
+                scale={[.2, .2, .2]}
+                // onPointerOver={(event) => (event.stopPropagation(), hover(true))}
+                
+              >
+                
+                <div>
+                  <h1 style={{ fontSize: '20px', margin: '0' }}>Hello World!</h1>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+              </Html> */}
+            </mesh>
           </Suspense>
-          <OrbitControls />
+
           {/* <Stats /> */}
         </Canvas>
       </div>

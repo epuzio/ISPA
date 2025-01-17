@@ -20,9 +20,6 @@ section {
     /* padding: .5rem; */
 }
 
-
-
-
 input[type=text] {
     width: 100%;
     box-sizing: border-box;
@@ -46,18 +43,12 @@ input[type=text] {
     margin: 0 auto;
     gap: 1rem;
     background-color: white;
-    /* padding: 1rem; */
 }
 
 /* Individual Album CSS */
 .albumStyle{
     width: 100%;
     aspect-ratio: 8 / 1;
-    /* border-right: 4px solid var(--cd-highlight); */
-    /* border-top: 4px solid var(--cd-highlight); */
-    border-left: 10px solid var(--cd-background);
-    border-bottom: 4px solid var(--cd-shadow);
-    /* border-radius: .5rem; */
     box-sizing: border-box;
     box-shadow: inset 0px 0px 0px 3px;    
     text-align: center;
@@ -65,14 +56,20 @@ input[type=text] {
     position: relative;
     align-items: center;
     justify-content: space-between;
-    padding-right: 5%;
-    padding-left: 5%;
+    padding-right: 3%;
+    padding-left: 3%;
 
     position: relative;
     margin-bottom: .2rem;
 
     container-type: inline-size;
-    
+
+    /* Add border to each CD */
+    /* border-right: 4px solid var(--cd-highlight); */
+    /* border-top: 4px solid var(--cd-highlight); */
+    /* border-left: 10px solid var(--cd-background); */
+    border-bottom: 4px solid var(--cd-shadow);
+    /* border-radius: .5rem; */
 }
 
 .albumText{
@@ -85,6 +82,8 @@ input[type=text] {
     align-items: center;
     resize: horizontal;
 
+    padding-left: 2%;
+    padding-right: 2%;
     /* Text resize */
     container-type: inline-size;
     display: flex;

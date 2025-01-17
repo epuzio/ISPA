@@ -2,6 +2,8 @@
 import axios from 'axios';
 import qs from 'qs';
 import { FastAverageColor } from 'fast-average-color';
+import { getDominantColor } from "@rtcoder/dominant-color";
+import { colorInThreshold } from "./albumStyles";
 
 const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -57,13 +59,37 @@ async function getArtistGenreFromArtistID(id, accessToken){
 
 // TOFIX: Returned colors aren't vibrant - see LAUGHINGFISH, Frailty & Shed Blood
 // FastAverageColor returns an average, not a dominant color
-async function getAverageColor(imgUrl){
+async function getAverageColor(imgUrl) {
+  // return new Promise((resolve, reject) => {
+  //   getDominantColor(imgUrl, {
+  //     downScaleFactor: 1,
+  //     skipPixels: 0,
+  //     colorsPaletteLength: 1,
+  //     paletteWithCountOfOccurrences: false,
+  //     colorFormat: 'rgb',
+  //     callback: (color, palette) => {
+  //       if (color) {
+  //         console.log(color);
+  //         resolve(color);
+  //       } else {
+  //         reject('Failed to get the dominant color');
+  //       }
+  //     },
+  //   });
+  // });
   const fastAvgColor = new FastAverageColor();
-  const ignoredColors = [[255, 255, 255, 255], [0, 0, 0, 255]];
+  const ignoredColors = [[255, 255, 255, 255, 5], [0, 0, 0, 255, 5]];
   try {
-    const color = await fastAvgColor.getColorAsync(imgUrl, {
-      ignoredColor: [ignoredColors],
+    let color = await fastAvgColor.getColorAsync(imgUrl, {
+      algorithm: 'dominant', // Custom algorithm focusing on dominant areas
     });
+    console.log("color hex", color.hex);
+    if(!colorInThreshold(color.hex)){
+      color = await fastAvgColor.getColorAsync(imgUrl, {
+        ignoredColor: [ignoredColors],
+      });
+    }
+    
     return color.hex; // Returns the resolved color value
   } catch (e) {
     console.log(e);
