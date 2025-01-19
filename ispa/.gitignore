@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Client ID/Secret
 .env
+
+# Images
+/Users/esmepuzio/Desktop/ISPA/ispa/public/images
