@@ -1,16 +1,12 @@
 export const reviews = {
     "Preacher’s Daughter": {
-        "pictureDescription": `Listened to Preacher's Daughter driving up to Yosemite with Anwesha`,
+        "pictureDescription": `Listened to Preacher's Daughter driving up to Yosemite with Anwesha!`,
         "pictureUrl": "/images/preachers_daughter.jpg",
         "favorite": true,
         "rating": 4
     },
     "Frailty": {
-        "review": `
-                    "Your Clothes" was the song that first introduced me to Jane Remover, and while I prefer her style
-                    on "Census Designated", "Frailty" is an incredible time capsule of 2020s hyperpop and Jane herself as an artist.
-                    I'm sad that the promotional ARG surrounding this album's release was scrapped - the pieces that survived
-                    provided a lot of context for the locations and time frames referenced on the album.
+        "review": `"Your Clothes" was the song that first introduced me to Jane Remover, and while I prefer her style on "Census Designated", "Frailty" is an incredible time capsule of 2020s hyperpop and Jane herself as an artist. I'm sad that the promotional ARG surrounding this album's release was scrapped - the pieces that survived provided a lot of context for the locations and time frames referenced on the album.
                   `,
         "favorite": true,
         "rating": 4
@@ -22,47 +18,33 @@ export const reviews = {
         "recommended": "Law",
         "rating": 4
     },
+    "BRAT": {
+        "review": `The soundtrack to my spring, summer and fall! Full of good, personal, danceable hits, but less-structured songs like "i think about it all the time" or "Girl, so confusing" don't hold their own against "Von Dutch" or "Sympathy is a Knife" - in my opinion, this stream-of-consciousness writing style doesn't suit A.G. Cook's production. Regardless, Charli's it-girl persona is infectious, and BRAT makes the most mundane tasks feel fresh.
+                `,
+        "favorite": true,
+        "recommended": "Law",
+        "rating": 5
+    },
     "I LAY DOWN MY LIFE FOR YOU": {
-        "review": `
-                    Incredible to experience live. On my initial listen, I thought there were too
-                    many songs on this album, but over time I think that the standouts from this album
-                    really hold their own. JPEGMAFIA has an incredible gift for picking samples and
-                    a willingness to draw those samples from truly baffling sources. Watching underscores 
-                    break down her production style on “Heck” made me appreciate artists who hear a random sound effect
-                    (like a Hanna Barbera scream! Or a line in Succession!) and think "I can build a song around this”. 
-                    It takes a lot of musical/cultural knowledge to do that, plus heavy faith in your own abilities as a producer
-                    to make something cohesive - thoroughly impressed.
+        "review": `Incredible to experience live. On my initial listen, I thought there were too many songs on this album, but over time I think that the standouts from this album really hold their own. JPEGMAFIA has an incredible gift for picking samples and a willingness to draw those samples from truly baffling sources. Watching underscores break down her production style on “Heck” made me appreciate artists who hear a random sound effect (like a Hanna Barbera scream! Or a line in Succession!) and think "I can build a song around this”. It takes a lot of musical/cultural knowledge to do that, plus heavy faith in your own abilities as a producer to make something cohesive - thoroughly impressed.
                   `,
         "favorite": true,
-        "rating": 4.0
+        "rating": 5
     },
-    "KiCK": {
-        "review": `
-                    My initial thoughts: hard to ease into, but after the first few listens almost every song becomes addictive. 
-                    This was one of my top albums this year and what introduced me to Arca's body of work, and it's the strongest
-                    of the Kick quintet, with the possible exception of KiCK ii. The emotional and sonic shift from Nonbinary to Time
-                    is incredible and really characterizes the album, and KiCK seems to build upon the promise for the future of music that SOPHIE's
-                    Oil Of Every Pearl's Uninsides established in 2018. My one critique is that many songs weren't as complex as I'd hoped,
-                    and songs like La Chíqui appear to be right on the cusp of a maximalist drop before they avert it entirely.
+    "KiCk i": {
+        "review": `My initial thoughts: hard to ease into, but after the first few listens almost every song becomes addictive. This was one of my top albums this year and what introduced me to Arca's body of work, and it's the strongest of the Kick quintet, with the possible exception of KiCK ii. The emotional and sonic shift from Nonbinary to Time is incredible and really characterizes the album, and KiCK seems to build upon the promise for the future of music that SOPHIE's Oil Of Every Pearl's Uninsides established in 2018. My one critique is that many songs weren't as complex as I'd hoped, and songs like La Chíqui appear to be right on the cusp of a maximalist drop before they avert it entirely.
                   `,
         "favorite": true,
         "rating": 4.5
     },
     "Soft Rock": {
-        "review": `
-                    I liked the singles that I'd already heard from the album, but no other song stuck out to me, and even the singles weren't too memorable. 
-                    Good background music, or I need to listen to it a few more times, but I expected more from AG Cook + EASYFUN given their previous work.
+        "review": `I liked the singles that I'd already heard from the album, but no other song stuck out to me, and even the singles weren't too memorable. Good background music, or I need to listen to it a few more times, but I expected more from AG Cook + EASYFUN given their previous work.
                   `,
         "favorite": false,
         "rating": 3
     },
     "LAUGHINGFISH": {
-        "review": `
-                    A more rock-esque direction for Black Dresses, which I ended up enjoying! 
-                    Devi's vocals are softer on this one which is an interesting change of pace, 
-                    and I loved the mental image painted by songs like IF YOU FIND ME GONE. 
-                    The background for the release of this album provides context for the length and quality 
-                    of many of the songs on it, and I'm left wondering how many of Ada or Devi's lyrics are about the other. 
+        "review": `A more rock-esque direction for Black Dresses, which I ended up enjoying! Devi's vocals are softer on this one which is an interesting change of pace, and I loved the mental image painted by songs like IF YOU FIND ME GONE. The background for the release of this album provides context for the length and quality of many of the songs on it, and I'm left wondering how many of Ada or Devi's lyrics are about the other. 
                   `,
         "favorite": true,
         "rating": 4.5

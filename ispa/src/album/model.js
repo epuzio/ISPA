@@ -3,45 +3,8 @@
 import React, { useRef, useState, useEffect, useContext, useMemo } from 'react'
 import { useGLTF, Html, Text } from '@react-three/drei'
 import * as THREE from 'three'
-import { useLoader, useFrame, Canvas } from '@react-three/fiber'
-import { Text as TroikaText, preloadFont } from 'troika-three-text'
+import { useLoader, useFrame } from '@react-three/fiber'
 import { TextureLoader } from 'three'
-
-// import WebFont from 'webfontloader';
-
-// function loadFont(fontFamily) {
-//   WebFont.load({
-//     google: {
-//       families: [fontFamily],
-//     },
-//   });
-// }
-
-preloadFont(
-  {
-    font: '/GONGN___.ttf',
-    characters: 'abcdefghijklmnopqrstuvwxyz',
-  },
-  () => {
-    console.log('preload font complete');
-  },
-);
-
-// // troika text
-// function TroikaTextComponent(txt) {
-//   const text = useMemo(() => {
-//     const text = new TroikaText();
-//     text.text = txt;
-//     text.fontSize = .04;
-//     text.color = "blue";
-//     text.anchorX = "center";
-//     text.anchorY = "middle";
-//     text.font = "/GONGN___.ttf";
-//     return text;
-//   }, []);
-
-//   return <primitive object={text} />;
-// }
 
 export default function Model({ album_color, image_url, review}) {
   console.log("val:", review?.review);
@@ -180,18 +143,8 @@ export default function Model({ album_color, image_url, review}) {
           <meshToonMaterial attach="material" map={polaroidImage} />
         </mesh>
         {review?.pictureUrl && (
-          // <mesh
-          //   position={[-1.3, -.55, 0.795]}
-          //   rotation={[0, Math.PI / 3, 0]}
-          //   maxWidth={0.9} 
-          //   maxHeight={0.2} 
-          // >
-          // <TroikaTextComponent style={{txt: review.pictureDescription}}
-            
-          // />
-          // </mesh>
           <Text
-            fontSize={0.04} 
+            fontSize={0.05} 
             letterSpacing={-0.05}
             position={[-1.3, -.62, 0.795]}
             rotation={[0, Math.PI / 3, 0]}
@@ -202,9 +155,9 @@ export default function Model({ album_color, image_url, review}) {
             textAlign="center"
             anchorX="center"
             anchorY="middle" 
-            // overflowWrap='normal'
-            // overflowY='scroll'
-            font='/GONGN___.ttf'
+            // font='/fonts/epuzio_font.ttf'
+            font='/fonts/Caveat-VariableFont_wght.ttf'
+            leading={0.1}
             style={{
               whiteSpace: 'pre-wrap',
               overflowY: 'scroll',
@@ -288,9 +241,9 @@ export default function Model({ album_color, image_url, review}) {
           scale={[2.415, 1, 2.497]}
         >
           <Text
-            fontSize={0.02}
+            fontSize={0.025}
             letterSpacing={-0.05} 
-            position={[-.25, -0.73, .58]} 
+            position={[-.31, -0.73, .58]} 
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             color="#000000" 
             material-toneMapped={false} 
@@ -300,12 +253,12 @@ export default function Model({ album_color, image_url, review}) {
             anchorX="center" 
             anchorY="top" 
             overflowWrap='normal'
+            font='/fonts/Caveat-VariableFont_wght.ttf'
             style={{
               whiteSpace: 'pre-wrap',
               overflowY: 'scroll',
               overflowX: 'hidden',
               msOverflowStyle: 'auto',
-              font: "Rock Salt"
             }}
           >
             {review.review}
