@@ -26,4 +26,4 @@ yarn-error.log*
 .env
 
 # Images
-/Users/esmepuzio/Desktop/ISPA/ispa/public/images
+/ispa/public/images
