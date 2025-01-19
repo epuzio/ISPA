@@ -1,5 +1,7 @@
 import { createContext, useState } from 'react';
+import {reviews} from '../reviews/reviews.js';
 export const AlbumNavContext = createContext({});
+
 export function AlbumNavProvider({ children }) {
     const [selectedLeftAlbum, setSelectedLeftAlbum] = useState(
     // Default album - MEGAN
@@ -52,6 +54,7 @@ export function AlbumNavProvider({ children }) {
     const [selectedFilteredPlaylist, setSelectedFilteredPlaylist] = useState([]);
     
     const changeAlbums = (album, index, filteredPlaylist) => {
+        console.log("test1");
         setSelectedAlbum(album);
         if(filteredPlaylist.length === 1) { // One album in query (cannot trigger changeAlbums if 0 in query)
             setSelectedLeftAlbum(album);
@@ -59,13 +62,21 @@ export function AlbumNavProvider({ children }) {
             setSelectedRightAlbum(album);
             return;
         }
+        console.log("test2");
     
         const prevAlbum = index !== 0 ? filteredPlaylist[index - 1] : filteredPlaylist[filteredPlaylist.length - 1];
+        console.log("test3");
         const nextAlbum = (index !== (filteredPlaylist.length - 1)) ? filteredPlaylist[index + 1] : filteredPlaylist[0];
         
+        console.log("test4");
         setSelectedLeftAlbum(prevAlbum);
+        console.log("test5");
         shuffleAlbums(filteredPlaylist, album);
+        console.log("test6");
         setSelectedRightAlbum(nextAlbum);
+        console.log("test7");
+        setAlbumReview(reviews[album.album_title] || {});
+        console.log("test8");
     };
 
     const shuffleAlbums = (filteredPlaylist, currentAlbum) => {
@@ -73,12 +84,24 @@ export function AlbumNavProvider({ children }) {
             return currentAlbum;
         }
         let shuffleIndex;
-        while(!shuffleIndex || filteredPlaylist[shuffleIndex].album_title === currentAlbum.album_title) { // Reshufflle if selected index matches random index
+        console.log(shuffleIndex);
+        while(shuffleIndex == undefined || filteredPlaylist[shuffleIndex].album_title == currentAlbum.album_title) { // Reshufflle if selected index matches random index
             shuffleIndex = Math.floor(Math.random() * filteredPlaylist.length);
+            console.log(filteredPlaylist[shuffleIndex].album_title == currentAlbum.album_title);
+            console.log(!shuffleIndex);
         }
         const shuffleAlbum = filteredPlaylist[shuffleIndex];
         setSelectedShuffleAlbum(shuffleAlbum);
     }
+
+    const [albumReview, setAlbumReview] = useState({
+        "Crest": {
+            "description": `First heard Five Star Crest traveling home from a day trip to Blair Atholl Castle`,
+            "favorite": true,
+            "recommended": "Law",
+            "rating": 4
+        },
+    });
 
     const value = {
         leftAlbum: {
@@ -101,7 +124,11 @@ export function AlbumNavProvider({ children }) {
             selectedFilteredPlaylist,
             setSelectedFilteredPlaylist
         },
-        changeAlbums
+        review:{
+            albumReview,
+            setAlbumReview
+        },
+        changeAlbums,
     };
     
     return (

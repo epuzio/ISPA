@@ -1,15 +1,57 @@
 // Model converted with https://github.com/pmndrs/gltfjsx
 
-import React, { useRef, useState, useEffect, useContext } from 'react'
-import { useGLTF, Text, Html } from '@react-three/drei'
+import React, { useRef, useState, useEffect, useContext, useMemo } from 'react'
+import { useGLTF, Html, Text } from '@react-three/drei'
 import * as THREE from 'three'
-import { useLoader, useFrame } from '@react-three/fiber'
+import { useLoader, useFrame, Canvas } from '@react-three/fiber'
+import { Text as TroikaText, preloadFont } from 'troika-three-text'
 import { TextureLoader } from 'three'
 
-export default function Model({ album_color, image_url }) {
+// import WebFont from 'webfontloader';
+
+// function loadFont(fontFamily) {
+//   WebFont.load({
+//     google: {
+//       families: [fontFamily],
+//     },
+//   });
+// }
+
+preloadFont(
+  {
+    font: '/GONGN___.ttf',
+    characters: 'abcdefghijklmnopqrstuvwxyz',
+  },
+  () => {
+    console.log('preload font complete');
+  },
+);
+
+// // troika text
+// function TroikaTextComponent(txt) {
+//   const text = useMemo(() => {
+//     const text = new TroikaText();
+//     text.text = txt;
+//     text.fontSize = .04;
+//     text.color = "blue";
+//     text.anchorX = "center";
+//     text.anchorY = "middle";
+//     text.font = "/GONGN___.ttf";
+//     return text;
+//   }, []);
+
+//   return <primitive object={text} />;
+// }
+
+export default function Model({ album_color, image_url, review}) {
+  console.log("val:", review?.review);
   const albumImage = useLoader(TextureLoader, image_url, (loader) => {
     loader.crossOrigin = "anonymous";
   });
+
+  // Conditional, only load if review.pictureUrl exists
+  const textureLoader = new TextureLoader(); 
+  const polaroidImage = textureLoader.load(review.pictureUrl);
 
   // Rotate CD
   const ref = useRef();
@@ -17,7 +59,7 @@ export default function Model({ album_color, image_url }) {
     ref.current.rotation.y -= 0.01;
   });
 
-  const { nodes } = useGLTF('/models/cd-review.gltf');
+  const { nodes } = useGLTF('/models/cd-polaroid.gltf');
 
   const plastic = new THREE.MeshToonMaterial({
     color: 0xd6d6d6,
@@ -34,7 +76,17 @@ export default function Model({ album_color, image_url }) {
   const paper = new THREE.MeshToonMaterial({
     color: 0xffffee,
   });
+  const albumColor = new THREE.Color(album_color);
+  const hsl = albumColor.getHSL({});
 
+  const sticker = new THREE.MeshToonMaterial({
+    color: hsl.l > 0.5 ? albumColor.offsetHSL(0, 0.1, -0.5) : albumColor.offsetHSL(0, 0.1, 0.5)
+  });
+
+  const heart = new THREE.MeshToonMaterial({
+    color: hsl.l > 0.5 ? albumColor.offsetHSL(0, 0.5, -0.2) : albumColor.offsetHSL(0, 0.5, -0.2)
+  });
+        
   
   let pos = [.85, 0, 0]; //move center to origin
   return (
@@ -94,91 +146,193 @@ export default function Model({ album_color, image_url }) {
         rotation={[Math.PI / 2, 0, Math.PI]}
         scale={[0.55, 0.258, 0.55]}
       />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Review_Paper.geometry}
-        material={paper}
-        position={[-0.002, 0, 0.009]}
-        rotation={[0, -Math.PI / 6, -Math.PI / 2]}
-        scale={[2.415, 1, 2.497]}
-      >
-          
-        {
-          // <Html
-          //   style={{
-          //     width: '10rem',
-          //     height: '10rem',
-          //     overflowY: 'scroll',
-          //     pointerEvents: 'auto', // Allow interaction with the HTML
-          //     overflow: 'auto', // Enable scrolling if content overflows
-          //     backgroundColor: 'white', // Optional: Add a background color
-          //     borderRadius: '10px', // Optional: Rounded corners
-          //   }}
-          //   castShadow
-          //   receiveShadow
-          //   transform
-          //   position={[0, -.74, .2]} // Offset slightly above the mesh
-          //   rotation={[-Math.PI / 2, 0, Math.PI / 2]} // Match the rotation of the mesh
-          //   scale={[.2, .2, .2]}
+
+      {review?.favorite && (
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Favorite_Heart.geometry}
+          material={heart}
+          position={[-1.005, -0.569, 0.235]}
+          rotation={[Math.PI / 2, 0, -Math.PI / 3]}
+          scale={[0.105, 0.052, 0.105]}
+        />
+      )}
+
+      {review?.pictureUrl && (
+        <>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Polaroid.geometry}
+          material={paper}
+          position={[0.202, -0.279, -0.342]}
+          rotation={[0, -Math.PI / 6, -Math.PI / 2]}
+          scale={[2.415, 1, 2.497]}
+        >
+        </mesh>
+        <mesh
+          position={[-1.3, 0, 0.795]}
+          rotation={[0, Math.PI / 3, 0]}
+          scale={[1, 1, 1]}
+        >
+          <planeGeometry/>
+          <meshToonMaterial attach="material" map={polaroidImage} />
+        </mesh>
+        {review?.pictureUrl && (
+          // <mesh
+          //   position={[-1.3, -.55, 0.795]}
+          //   rotation={[0, Math.PI / 3, 0]}
+          //   maxWidth={0.9} 
+          //   maxHeight={0.2} 
           // >
-          //   <div>
-          //     <h1 style={{ fontSize: '20px', margin: '0' }}>Hello World!</h1>
-          //     <p>
-          //       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          //       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          //       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          //       </p>
-          //   </div>
-          // </Html>
-            <Text
-              fontSize={0.03} // Adjust font size
-              letterSpacing={-0.05} // Adjust letter spacing
-              position={[-.25, -0.73, .58]} // Position on the mesh
-              rotation={[-Math.PI / 2, 0, Math.PI / 2]} // Rotate to match mesh
-              color="#339922" // Text color
-              material-toneMapped={false} // Prevent HDR tonemapping
-              maxWidth={0.4} // Constrain text width
-              maxHeight={0.4} // Constrain text width
-              textAlign="left" // Align text within bounds
-              anchorX="center" // Horizontal anchor
-              anchorY="top" // Vertical anchor
-            >
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            </Text>
-        }
-      </mesh>
+          // <TroikaTextComponent style={{txt: review.pictureDescription}}
+            
+          // />
+          // </mesh>
+          <Text
+            fontSize={0.04} 
+            letterSpacing={-0.05}
+            position={[-1.3, -.62, 0.795]}
+            rotation={[0, Math.PI / 3, 0]}
+            color="#000000"
+            material-toneMapped={false}
+            maxWidth={0.9} 
+            maxHeight={0.2} 
+            textAlign="center"
+            anchorX="center"
+            anchorY="middle" 
+            // overflowWrap='normal'
+            // overflowY='scroll'
+            font='/GONGN___.ttf'
+            style={{
+              whiteSpace: 'pre-wrap',
+              overflowY: 'scroll',
+              overflowX: 'hidden',
+              msOverflowStyle: 'auto',
+            }}
+          >
+            {review.pictureDescription}
+          </Text>
 
+        )}
+        </>
+      )}
 
+      {review?.rating && (
+        <>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Star_1.geometry}
+            material={sticker}
+            position={[-0.994, -0.384, 0.241]}
+            rotation={[Math.PI / 2, 0, -Math.PI / 3]}
+            scale={[1.37, 0.493, 1.37]}
+          />
+          {review.rating >= 2 && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Star_2.geometry}
+            material={sticker}
+            position={[-0.994, -0.384, 0.241]}
+            rotation={[Math.PI / 2, 0, -Math.PI / 3]}
+            scale={[1.37, 0.493, 1.37]}
+          />
+          )}
+          {review.rating >= 3 && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Star_3.geometry}
+            material={sticker}
+            position={[-0.994, -0.384, 0.241]}
+            rotation={[Math.PI / 2, 0, -Math.PI / 3]}
+            scale={[1.37, 0.493, 1.37]}
+          />
+          )}
+          {review.rating >= 4 && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Star_4.geometry}
+            material={sticker}
+            position={[-0.994, -0.384, 0.241]}
+            rotation={[Math.PI / 2, 0, -Math.PI / 3]}
+            scale={[1.37, 0.493, 1.37]}
+          />
+          )}
+          {review.rating >= 5 && (
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Star_5.geometry}
+            material={sticker}
+            position={[-0.994, -0.384, 0.241]}
+            rotation={[Math.PI / 2, 0, -Math.PI / 3]}
+            scale={[1.37, 0.493, 1.37]}
+          />
+          )}
+        </>
+    )}
 
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Favorite_Heart.geometry}
-        material={new THREE.MeshToonMaterial({color: new THREE.Color(album_color).offsetHSL(0, 0.2, 0.5)})}
-        position={[-1.032, 0.543, 0.281]}
-        rotation={[1.495, -0.044, -1.049]}
-        scale={[0.146, 0.073, 0.146]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Recommend_Heart.geometry}
-        material={new THREE.MeshToonMaterial({color: new THREE.Color(album_color).offsetHSL(0, 0.5, 0.2)})}
-        position={[-1.041, 0.347, 0.297]}
-        rotation={[1.646, 0.044, -1.049]}
-        scale={[0.146, 0.073, 0.146]}
-      />
-
-      {/* <Text color="black" anchorX="center" anchorY="middle">
-        1SPA
-      </Text> */}
+      {review?.review && (
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Review_Paper.geometry}
+          material={paper}
+          position={[-0.002, -0.279, 0.009]}
+          rotation={[0, -Math.PI / 6, -Math.PI / 2]}
+          scale={[2.415, 1, 2.497]}
+        >
+          <Text
+            fontSize={0.02}
+            letterSpacing={-0.05} 
+            position={[-.25, -0.73, .58]} 
+            rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+            color="#000000" 
+            material-toneMapped={false} 
+            maxWidth={0.4} 
+            maxHeight={0.2} 
+            textAlign="left" 
+            anchorX="center" 
+            anchorY="top" 
+            overflowWrap='normal'
+            style={{
+              whiteSpace: 'pre-wrap',
+              overflowY: 'scroll',
+              overflowX: 'hidden',
+              msOverflowStyle: 'auto',
+              font: "Rock Salt"
+            }}
+          >
+            {review.review}
+          </Text>
+        </mesh>
+      )}
     </group>
-    
   )
 }
 
-useGLTF.preload('/models/cd-review.gltf')
+useGLTF.preload('/models/cd-polaroid.gltf')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -200,3 +354,51 @@ useGLTF.preload('/models/cd-review.gltf')
   //   {/* "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." */}
   // </Text>
 // }
+
+
+{/* <Text
+    fontSize={0.03} // Adjust font size
+    letterSpacing={-0.05} // Adjust letter spacing
+    position={[-.25, -0.73, .58]} // Position on the mesh
+    rotation={[-Math.PI / 2, 0, Math.PI / 2]} // Rotate to match mesh
+    color="#339922" // Text color
+    overflowY="scroll"
+    material-toneMapped={false} // Prevent HDR tonemapping
+    maxWidth={0.4} // Constrain text width
+    maxHeight={0.4} // Constrain text width
+    textAlign="left" // Align text within bounds
+    anchorX="center" // Horizontal anchor
+    anchorY="top" // Vertical anchor
+    
+  >
+    <Html
+    style={{
+      width: '10rem',
+      height: '10rem',
+      
+      pointerEvents: 'auto', // Allow interaction with the HTML
+      // backgroundColor: 'white', // Optional: Add a background color
+      msOverflowStyle: 'auto',
+      overflowY: 'scroll',
+    }}
+    castShadow
+    receiveShadow
+    transform
+    position={[-.0, -.18, 0]} // Offset slightly above the mesh
+    onPointerOver={(e) => {
+      e.stopPropagation();
+      e.target.closest('div').style.pointerEvents = 'none';
+    }}
+    onPointerOut={(e) => {
+      e.stopPropagation();
+      e.target.closest('div').style.pointerEvents = 'auto';
+    }}
+    rotation={[0, 0, 0]} // Match the rotation of the mesh
+    scale={[.1, .1, .1]}
+    >
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+    </Html>
+  </Text> */}

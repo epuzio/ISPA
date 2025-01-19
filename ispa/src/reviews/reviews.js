@@ -1,4 +1,10 @@
 export const reviews = {
+    "Preacher’s Daughter": {
+        "pictureDescription": `Listened to Preacher's Daughter driving up to Yosemite with Anwesha`,
+        "pictureUrl": "/images/preachers_daughter.jpg",
+        "favorite": true,
+        "rating": 4
+    },
     "Frailty": {
         "review": `
                     "Your Clothes" was the song that first introduced me to Jane Remover, and while I prefer her style
@@ -7,8 +13,14 @@ export const reviews = {
                     provided a lot of context for the locations and time frames referenced on the album.
                   `,
         "favorite": true,
-        "recommend": false,
-        "rating": 4.5
+        "rating": 4
+    },
+    "Crest": {
+        "pictureDescription": `First heard Five Star Crest traveling home from a day trip to Blair Atholl Castle`,
+        "pictureUrl": "/images/crest.jpg",
+        "favorite": true,
+        "recommended": "Law",
+        "rating": 4
     },
     "I LAY DOWN MY LIFE FOR YOU": {
         "review": `
@@ -22,7 +34,6 @@ export const reviews = {
                     to make something cohesive - thoroughly impressed.
                   `,
         "favorite": true,
-        "recommend": true,
         "rating": 4.0
     },
     "KiCK": {
@@ -35,7 +46,6 @@ export const reviews = {
                     and songs like La Chíqui appear to be right on the cusp of a maximalist drop before they avert it entirely.
                   `,
         "favorite": true,
-        "recommend": true,
         "rating": 4.5
     },
     "Soft Rock": {
@@ -44,7 +54,6 @@ export const reviews = {
                     Good background music, or I need to listen to it a few more times, but I expected more from AG Cook + EASYFUN given their previous work.
                   `,
         "favorite": false,
-        "recommend": true,
         "rating": 3
     },
     "LAUGHINGFISH": {
@@ -56,7 +65,6 @@ export const reviews = {
                     of many of the songs on it, and I'm left wondering how many of Ada or Devi's lyrics are about the other. 
                   `,
         "favorite": true,
-        "recommend": false,
         "rating": 4.5
     },
     "Exile In Guyville": {
@@ -67,15 +75,13 @@ export const reviews = {
                     memorable in my first listen, and on repeated listens I've found myself drawn to the parables in "Divorce Song" and "Fuck and Run".
                   `,
         "favorite": true,
-        "recommend": true,
-        "rating": 4.5
+        "rating": 5
     },
     "food house": {
         "review": `
                    Fraixom's lyricism never fails to amaze me. Food house would probably be incredible to experience live.
                   `,
         "favorite": false,
-        "recommend": false,
         "rating": 3.5
     },
     "Veteran": {
@@ -84,7 +90,6 @@ export const reviews = {
                    but overall didn't capture me as much as "I LAY DOWN MY LIFE FOR YOU" did.
                   `,
         "favorite": false,
-        "recommend": false,
         "rating": 3
     },
     "Hounds of Love": {
@@ -92,24 +97,70 @@ export const reviews = {
                    Not many thoughts, but I can see Kate Bush's influence on modern-day art pop artists like Eartheater and Polachek.
                   `,
         "favorite": false,
-        "recommend": false,
         "rating": null
     },
     "Short 'n' Sweet": {
         "review": `
                    Sabrina Carpenter's persona irritated me this album, especially given the context of her dynamic with Olivia Rodrigo.
-                   Then again, I'm not a fan of pop, so I don't know what I was expecting. The production is good, albeit generic, but I preferred her EP fruitcake.
+                   Then again, I'm not a fan of pop, so I don't know what I was expecting. The production is good, albeit generic, but I preferred her singing (and persona) on fruitcake.
                   `,
         "favorite": false,
-        "recommend": false,
         "rating": 2
     },
+    "In the Dream of the Sea Life": {
+        "pictureDescription":`Listened to this while making pie for Friendsgiving!`,
+        "pictureUrl": "/images/appaloosa_bones.jpg",
+        "favorite": false,
+    },
     "Appaloosa Bones": {
+        "pictureDescription":`Listened to this while making pie for Friendsgiving!`,
+        "pictureUrl": "/images/appaloosa_bones.jpg",
+        "favorite": false,
+    },
+    "Everything So Far": {
+        "favorite": false,
+        "rating": 1
+    },
+    "Forever In Your Heart": {
         "review": `
-                   Listened to this while making apple pie. :~)
+                   This is the final Black Dresses album I had yet to listen to, and in my opinion it's their weakest.
+                   The rock direction they take this album makes many songs sound similar, and unlike LAUGHINGFISH there were
+                   no standout singles that grabbed my attention.   
                   `,
         "favorite": false,
-        "recommend": false,
-        "rating": null
+        "rating": 3
     },
+    "Everything Is Understood, Cats Live 100 Years": {
+        "review": `
+                   This album appeared out of nowhere and ended up being one of my favorites of this whole project. 
+                   Unfortunately, I haven't found translations for most of this album, but the vocals are so crisp and wistful
+                   that my heart aches regardless. 
+                  `,
+        "favorite": true,
+        "rating": 4
+    },
+    "MG Ultra": {
+        "review": `
+                   An excellent synthesis of their work on Gemini and their work on WLFGRL + The Ugly Art + U-Void Synthesizer,
+                   while still retaining that classic Machine Girl sound. Wonderful to experience live.
+                  `,
+        "favorite": true,
+        "rating": 4
+    },
+    "Cold Visions": {
+        "pictureDescription":`Saw Cold Visions live!`,
+        "pictureUrl": "/images/bladee_concert.jpg",
+        "favorite": false,
+    },
+    "Dookie": {
+        "pictureDescription":`Saw Dookie (and American Idiot) performed live in their entirety for the album's 20th anniversary!`,
+        "pictureUrl": "/images/green_day_concert.jpg",
+        "favorite": false,
+    },
+    "Brat and it’s completely different but also still brat":{
+        "pictureDescription":`Saw Kesha perform Spring Breakers live with Anwesha - probably the best concert I've been to this year`,
+        "pictureUrl": "/images/brat_remix_album.jpg",
+        "favorite": true,
+        "rating": 3
+    }
 }

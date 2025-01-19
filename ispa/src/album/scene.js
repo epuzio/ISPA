@@ -11,7 +11,8 @@ import Model from './model.js'
 import * as THREE from 'three';
 
 export default function Scene() {
-  const { leftAlbum, rightAlbum, shuffleAlbum, currentAlbum, filteredPlaylist, shuffleAlbums, changeAlbums } = useContext(AlbumNavContext);
+  const { leftAlbum, rightAlbum, shuffleAlbum, currentAlbum, filteredPlaylist, shuffleAlbums, review, changeAlbums } = useContext(AlbumNavContext);
+  const {albumReview, setAlbumReview} = review;
   const controlsRef = useRef();
   const canvasRef = useRef();
 
@@ -85,40 +86,13 @@ export default function Scene() {
             <Model
                   album_color={currentAlbum.selectedAlbum.album_color}
                   image_url={currentAlbum.selectedAlbum.image_url}
-                  sticky_note_color={`color-mix(in srgb, ${currentAlbum.selectedAlbum.image_url}, black 50%)`}
+                  review={albumReview || {}}
+                  // review_text={albumReview?.review || ""}
+                  // review_text={`Here is a sample review that I'm setting in scene.js, later on I will pull reviews directly from a js file based on the album id but for right now this is a good proof of concept. Unfortunately, I can't figure out how to enable scrolling behavior for Text objects, and if I embed HTML I can't figure out how to disable OrbitControls so that users can scroll up and down in an album review, so in the future, I will ensure that my reviews are not very long. Perhaps I will figure out a way to do it the future, but so far I've wasted about four hours on this so my brain is officially too exhausted to continue onward. There are more interesting problems to tackle, and I can always return to this one.`}
                 />
             <mesh 
               pointerEvents='auto'
             >
-              {/* <Html
-                style={{
-                  width: '10rem',
-                  height: '10rem',
-                  overflowY: 'scroll',
-                  pointerEvents: 'auto', // Allow interaction with the HTML
-                  overflow: 'auto', // Enable scrolling if content overflows
-                  backgroundColor: 'white', // Optional: Add a background color
-                  borderRadius: '10px', // Optional: Rounded corners
-                }}
-                castShadow
-                receiveShadow
-                transform
-                position={[-.7, 0, 0.6]} // Offset slightly above the mesh
-                rotation={[0, Math.PI / 3, 0]} // Match the rotation of the mesh
-                scale={[.2, .2, .2]}
-                // onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-                
-              >
-                
-                <div>
-                  <h1 style={{ fontSize: '20px', margin: '0' }}>Hello World!</h1>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-              </Html> */}
             </mesh>
           </Suspense>
 
