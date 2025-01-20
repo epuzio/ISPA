@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useQuery,useContext } from 'react';
 import './scrollBar.css';
-import { getGenreFont, getColorVariation, getTrimmedTitle, getTextColor, allGenres} from "./albumStyles";
+import { getGenreFont, getColorVariation, getTrimmedTitle, getTextColor, allGenres} from "./albumStyles.js";
 import {getPlaylist} from "./spotifyAPI.js";
 import { AlbumNavContext } from './albumNavContext.js'; // Pass left/right albums based on search query
 import '@fortawesome/fontawesome-free/css/all.min.css';
