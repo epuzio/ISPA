@@ -65,16 +65,6 @@ export function getGenreFont(spotifyGenres){
   return "Helvetica"; //default if nothing is found
 }
 
-export function getTrimmedTitle(title){
-  // For albums with long titles/subtitles, remove subtitle
-  if(title.length > 50){
-    if(title.includes("(")){
-      return title.substring(0, title.indexOf("("));
-    }
-  }
-  return title;
-}
-
 export function hexToRgb(color){
   const hex = color.slice(1); //remove #
   const r = parseInt(hex.substring(0,2), 16);
@@ -98,7 +88,6 @@ export function colorInThreshold(hex){
 
 export function getTextColor(albumColor){
     let [r, g, b] = hexToRgb(albumColor);
-    // Color variation based on album color
     if((r+g+b) < 256){ return ["#ffffff", "#ffffffaa"]; } 
     if((r+g+b) > 512){ 
       if(r > b && g > b){ 
@@ -119,15 +108,5 @@ export function getTextColor(albumColor){
 export function getColorVariation(release_date){
   let albumDate = new Date(release_date);
   return albumDate < new Date("2024-01-01");
-  // if(albumDate < new Date("2002-08-26")){
-  //   return "#735c62";
-  // }
-  // else if(albumDate < new Date("2020-06-17")){
-  //   return "#a18381"
-  // }
-  // else if(albumDate < new Date("2024-01-01")){
-  //   return "#d1565e"
-  // }
-  // return "#f73667";
 }
   

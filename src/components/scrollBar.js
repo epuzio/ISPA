@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useQuery,useContext } from 'react';
-import './scrollBar.css';
-import { getGenreFont, getColorVariation, getTrimmedTitle, getTextColor, allGenres} from "./albumStyles.js";
-import {getPlaylist} from "./spotifyAPI.js";
-import { AlbumNavContext } from './albumNavContext.js'; // Pass left/right albums based on search query
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useExtractColors } from 'react-extract-colors';
+import './styles.css';
+import { getGenreFont, getColorVariation, getTextColor } from "../utils/albumUtilFunctions.js";
+import {getPlaylist} from "../api/spotifyAPI.js";
+import { AlbumNavContext } from '../contexts/albumNavContext.js';
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
-  const {leftAlbum, rightAlbum, shuffleAlbum, currentAlbum, filteredPlaylist, changeAlbums } = useContext(AlbumNavContext);
-  const {selectedLeftAlbum, setSelectedLeftAlbum} = leftAlbum;
-  const {selectedShuffleAlbum, setSelectedShuffleAlbum} = shuffleAlbum;
-  const {selectedRightAlbum, setSelectedRightAlbum} = rightAlbum;
-  const {selectedAlbum, setSelectedAlbum} = currentAlbum;
+  const {filteredPlaylist, changeAlbums } = useContext(AlbumNavContext);
   const {selectedFilteredPlaylist, setSelectedFilteredPlaylist} = filteredPlaylist;
 
   const [query, setQuery] = useState("");
@@ -71,10 +65,10 @@ export default function ScrollBar() {
               }}
     
               onClick={() => {
-                // getFilteredPlaylist();
                 changeAlbums(album, index, selectedFilteredPlaylist);
               }}
             >
+            {/* Individual CD spine */}
             <section id={
               `${album.artist_name}-${album.album_title}`} 
               className="albumText"
@@ -95,9 +89,7 @@ export default function ScrollBar() {
                   color: getColorVariation(album.release_date) ? getTextColor(album.album_color)[1] : getTextColor(album.album_color)[0],
                 }}>
                   {album.album_title}
-                  {/* {getTrimmedTitle(album.album_title)} */}
               </div>
-                
             </section>
             </div>
         ))}

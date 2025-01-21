@@ -1,8 +1,9 @@
 import { createContext, useState } from 'react';
-import {reviews} from '../reviews/reviews.js';
+import {reviews} from '../data/reviews.js';
 export const AlbumNavContext = createContext({});
 
 export function AlbumNavProvider({ children }) {
+    // TOFIX: remove default values, replace with real data
     const [selectedLeftAlbum, setSelectedLeftAlbum] = useState(
     // Default album - MEGAN
     {
@@ -70,12 +71,14 @@ export function AlbumNavProvider({ children }) {
         setAlbumReview(reviews[album.album_title] || {});
     };
 
+    // TOFIX: creates bugs with the starting album (that uses sample data instead of real data)
+    // Resolve this error after adding an about page to the project if it persists.
     const shuffleAlbums = (filteredPlaylist, currentAlbum) => {
         if(filteredPlaylist.length === 1) {
             return currentAlbum;
         }
         let shuffleIndex;
-        while(shuffleIndex == undefined || filteredPlaylist[shuffleIndex].album_title == currentAlbum.album_title) { // Reshufflle if selected index matches random index
+        while(shuffleIndex == undefined || filteredPlaylist[shuffleIndex].album_title === currentAlbum.album_title) { // Reshufflle if selected index matches random index
             shuffleIndex = Math.floor(Math.random() * filteredPlaylist.length);
         }
         const shuffleAlbum = filteredPlaylist[shuffleIndex];

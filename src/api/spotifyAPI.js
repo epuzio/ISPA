@@ -1,9 +1,6 @@
-// Code taken from https://ritvikbiswas.medium.com/connecting-to-the-spotify-api-using-node-js-and-axios-client-credentials-flow-c769e2bee818
 import axios from 'axios';
 import qs from 'qs';
-import { FastAverageColor } from 'fast-average-color';
-import { getDominantColor } from "@rtcoder/dominant-color";
-import { colorInThreshold } from "./albumStyles";
+import {getAverageColor} from '../utils/averageColorUtil.js';
 
 const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
@@ -52,54 +49,14 @@ async function getArtistGenreFromArtistID(id, accessToken){
       if(error.response?.status != 429){
         return null;
       }
-      await stall(1000); // Delay 2 seconds, retry request
+      await stall(1000); // Delay, then retry request
     }
   }
 }
 
-// TOFIX: Returned colors aren't vibrant - see LAUGHINGFISH, Frailty & Shed Blood
-// FastAverageColor returns an average, not a dominant color
-async function getAverageColor(imgUrl) {
-  // return new Promise((resolve, reject) => {
-  //   getDominantColor(imgUrl, {
-  //     downScaleFactor: 1,
-  //     skipPixels: 0,
-  //     colorsPaletteLength: 1,
-  //     paletteWithCountOfOccurrences: false,
-  //     colorFormat: 'rgb',
-  //     callback: (color, palette) => {
-  //       if (color) {
-  //         console.log(color);
-  //         resolve(color);
-  //       } else {
-  //         reject('Failed to get the dominant color');
-  //       }
-  //     },
-  //   });
-  // });
-  const fastAvgColor = new FastAverageColor();
-  const ignoredColors = [[255, 255, 255, 255, 5], [0, 0, 0, 255, 5]];
-  try {
-    let color = await fastAvgColor.getColorAsync(imgUrl, {
-      algorithm: 'dominant', // Custom algorithm focusing on dominant areas
-    });
-    console.log("color hex", color.hex);
-    if(!colorInThreshold(color.hex)){
-      color = await fastAvgColor.getColorAsync(imgUrl, {
-        ignoredColor: [ignoredColors],
-      });
-    }
-    
-    return color.hex; // Returns the resolved color value
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-
 export const getPlaylist = async() => {
   try {
-    const playlistID = "62U2aL9NGYzQm5Y76bdZc8"; // Hardcoded URI to ISPA playlist.
+    const playlistID = "62U2aL9NGYzQm5Y76bdZc8"; // Hardcoded URI to ISPA 2024 playlist
     const accessToken = await getAuth();
     const url = `https://api.spotify.com/v1/playlists/${playlistID}`;
     const response = await getResponse(url, accessToken);

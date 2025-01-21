@@ -1,8 +1,8 @@
 import './App.css';
 import ScrollBar from './components/scrollBar';
-import Scene from './album/scene';
+import Scene from './components/album/scene';
 import Split from 'react-split';
-import { AlbumNavProvider } from './components/albumNavContext';
+import { AlbumNavProvider } from './contexts/albumNavContext';
 
 function App() {
   return (

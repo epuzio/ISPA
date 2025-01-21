@@ -1,5 +1,3 @@
-/* Default React App CSS */
-
 .App {
   text-align: center;
 }
@@ -112,25 +110,25 @@ li:hover {
 }
 
 .scrollBar {
-  width: 400px; /* Fixed width for the scroll bar */
-  height: 100vh; /* Full viewport height */
-  justify-content: center; /* Centers content horizontally */
-  align-items: left; /* Centers content vertically */
+  width: 400px; 
+  height: 100vh;
+  justify-content: center; 
+  align-items: left; 
   top: 0;
   left: 0;
 }
 
 .albumModelContainer {
-  height: 100%; /* Takes full height of its container */
+  height: 100%;
   width: 100%;
-  justify-content: center; /* Centers content horizontally */
-  align-items: right; /* Centers content vertically */
+  justify-content: center; 
+  align-items: right; 
   background: green;
 }
 
 .screen {
-  display: flex; /* Enables Flexbox layout */
-  height: 100vh; /* Full viewport height */
+  display: flex; 
+  height: 100vh; 
 }
 
 .wrap {

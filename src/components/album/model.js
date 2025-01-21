@@ -1,4 +1,4 @@
-// Model converted with https://github.com/pmndrs/gltfjsx
+// GTLF converted to JSX component with https://github.com/pmndrs/gltfjsx
 
 import React, { useRef, useState, useEffect, useContext, useMemo } from 'react'
 import { useGLTF, Html, Text } from '@react-three/drei'
@@ -7,11 +7,12 @@ import { useLoader, useFrame } from '@react-three/fiber'
 import { TextureLoader } from 'three'
 
 export default function Model({ album_color, image_url, review}) {
+  // Load album cover art
   const albumImage = useLoader(TextureLoader, image_url, (loader) => {
     loader.crossOrigin = "anonymous";
   });
 
-  // Conditional, only load if review.pictureUrl exists
+  // Conditional, only load review picture if review.pictureUrl exists
   const textureLoader = new TextureLoader(); 
   const polaroidImage = textureLoader.load(review.pictureUrl);
 
@@ -32,12 +33,10 @@ export default function Model({ album_color, image_url, review}) {
   const metal = new THREE.MeshToonMaterial({
     color: 0x666666,
   });
-  const stickyNote = new THREE.MeshToonMaterial({
-    color: 0xffcc00,
-  });
   const paper = new THREE.MeshToonMaterial({
     color: 0xffffee,
   });
+
   const albumColor = new THREE.Color(album_color);
   const hsl = albumColor.getHSL({});
 
@@ -49,10 +48,8 @@ export default function Model({ album_color, image_url, review}) {
     color: hsl.l > 0.5 ? albumColor.offsetHSL(0, 0.5, -0.2) : albumColor.offsetHSL(0, 0.5, -0.2)
   });
         
-  
-  let pos = [.85, 0, 0]; //move center to origin
   return (
-    <group dispose={null} position={pos}>
+    <group dispose={null} position={[.85, 0, 0]}>
       <mesh
         castShadow
         receiveShadow

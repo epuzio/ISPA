@@ -1,0 +1,244 @@
+/* Elements in ScrollBar */
+
+:root {
+    --cd-highlight: #b7b3b1;
+    --cd-shadow: #656565;
+    --cd-background: #8a8787;
+    --search-bar-background: #785050;
+     --search-bar-shadow: #573939;
+     --search-bar-highlight: #ba6767;
+     --search-bar-display: #457f87;
+   }
+ 
+ section {
+     display: flex;
+     height: 10px;
+     font-size: 16px;
+     font-weight: bold;
+     justify-content: space-between;
+     align-items:center;
+ }
+ 
+ input[type=text] {
+     width: 100%;
+     box-sizing: border-box;
+     box-shadow: inset 1px -2px 0px var(--cdbutton-shadow);
+     border: none; 
+     border-width:0px;
+     font-size: 16px;
+     background-color: white;
+     background-image: url('../../public/search-solid.png');
+     background-size: 15px;
+     background-repeat: no-repeat;
+     background-position: 12px center;
+ 
+     padding-left: 40px;
+     position: relative;
+ }
+ 
+ .scrollElement{
+     height: 100%;
+     overflow-y: scroll;
+     margin: 0 auto;
+     gap: 1rem;
+     background-color: white;
+ }
+ 
+ /* Individual Album CSS */
+ .albumStyle{
+     width: 100%;
+     aspect-ratio: 8 / 1;
+     box-sizing: border-box;
+     box-shadow: inset 0px 0px 0px 3px;    
+     text-align: center;
+     display: flex;
+     position: relative;
+     align-items: center;
+     justify-content: space-between;
+     padding-right: 3%;
+     padding-left: 3%;
+ 
+     position: relative;
+     margin-bottom: .2rem;
+ 
+     container-type: inline-size;
+ 
+     /* Add border to each CD */
+     /* border-right: 4px solid var(--cd-highlight); */
+     /* border-top: 4px solid var(--cd-highlight); */
+     /* border-left: 10px solid var(--cd-background); */
+     border-bottom: 4px solid var(--cd-shadow);
+     /* border-radius: .5rem; */
+ }
+ 
+ .albumText{
+     text-align: center;
+     position: relative;
+     justify-content: center;
+     gap: .5rem;
+     height: 100%;
+     width: 100%;
+     align-items: center;
+     resize: horizontal;
+ 
+     padding-left: 2%;
+     padding-right: 2%;
+     /* Text resize */
+     container-type: inline-size;
+     display: flex;
+     font-size: 4cqw;
+ }
+ 
+ .albumTitle{
+     align-items: center;
+     align-items: right;
+     text-align: right;    
+ }
+ 
+ .albumArtist{
+     align-items: left;
+     text-align: left;
+ }
+ 
+ /* Search bar div element */
+ .searchBarBorders{
+     /* box-shadow: inset -1px 2px 0px var(--cdbutton-highlight), 
+                 -1px 2px 0px var(--cdbutton-shadow); */
+     background: var(--cdbutton-background);
+     border: 0;
+     border-radius: 50px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 10px 12px; 
+     cursor: text; 
+     margin-bottom: 12px;
+ }
+ 
+ .searchBar{
+     position: sticky;
+     top: 0px;
+     height: 40px;
+     border-radius: 30px;
+     outline: none;
+     border: 0;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ .scrollClass{
+     height: "100vh";
+     padding-top: 10px;
+     padding-left: 10px;
+     padding-bottom: 10px;
+     background: white;
+ }
+
+ 
+
+ /* scene css */
+
+ :root {
+    --cdbutton-background: #bbbbbb;
+    --cdbutton-shadow: #7c7c7c;
+    --cdbutton-hover-shadow: #5d5d5d;
+    --cdbutton-highlight: #e5e5e5;
+    --cdbutton-hover-highlight: #f8f8f8;
+    --cdmenu-background:#8b8b8b;
+    --cdmenu-shadow: #626262;
+  }
+
+.canvasElement{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: white;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: absolute;
+    inset: 0px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    z-index: 1;
+    border: 0;
+    border-radius: 25px;
+    gap: .5rem;
+    box-shadow: inset -2px 3px 0px var(--cdmenu-highlight);
+    background: var(--cdmenu-background);
+}
+
+.albumNavButtons{
+    justify-content: space-between;
+    align-content: center;
+    position: absolute;
+    display: flex;
+    top: 80%;
+    padding: 10px;
+    z-index: 1;
+}
+
+.topButtons{
+    justify-content: right;
+    padding: 1rem;
+    align-items: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+    margin: 0 auto;
+    gap: .5rem;
+    /* background-color: aquamarine; */
+}
+
+/*     // style={{
+    //   justifyContent: "right",
+    //   position: "absolute",
+    //   alignItems: "right",
+    //   top: "0px",
+    //   right: "0px",
+    //   padding:"10px",
+    //   zIndex: "10000",
+    //   // backgroundColor: "rgb(79, 78, 32)"
+    // }} */
+.topMenuButton{
+    aspect-ratio: 1;
+    border: 0;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--cdmenu-background);
+    transition: 0.2s;
+}
+
+.topMenuButton:hover{
+    color: var(--cdmenu-shadow);
+}
+
+.cdMenuButton{
+    box-shadow: inset -1px 2px 0px var(--cdbutton-highlight), 
+                -1px 2px 0px var(--cdbutton-shadow);
+    background: var(--cdbutton-background);
+    border: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+    cursor: pointer;
+}
+
+.cdMenuButton:active{
+    background: var(--cdbutton-shadow);
+    box-shadow: inset -1px 2px 0px var(--cdbutton-hover-shadow), 
+                -1px 2px 0px var(--cdbutton-background);
+    /* transition: 0.5s; */
+}
