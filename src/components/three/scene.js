@@ -8,6 +8,7 @@ import AlbumNav from '../albumNav.js';
 import TopNav from '../topNav.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Model from './model.js'
+import Note from './note.js'
 
 export default function Scene() {
   const { currentAlbum, review } = useContext(AlbumNavContext);
@@ -17,7 +18,9 @@ export default function Scene() {
 
   return (
     <div className='canvasElement'>
+      { currentAlbum.selectedAlbum && (
       <AlbumNav/>
+      )}
       <div style={{width: "100%", height: "100%"}}>
         <Canvas 
           style={{height: `100vh`, width: '100%', position: `relative` }}
@@ -28,14 +31,24 @@ export default function Scene() {
           >
           <OrbitControls ref={controlsRef} />
           <color attach="background" args={['#ffffff']} />
-          <pointLight position={[1, 2, .25]} intensity={4} color={"#ffffff"} />
-          <ambientLight intensity={0.75} />
+
+          {/* Point lights below and above the model create a gradient */}
+          <pointLight position={[1.5, 2.75, .25]} intensity={10} color={"#ffffff"}/>
+          <pointLight position={[1, 3, -1]} intensity={5} color={"#ff5965"}/>
+          <pointLight position={[1, -5, -1]} intensity={20} color={"#5cbdff"}/>
+          <ambientLight intensity={0.25} />
+
           <Suspense fallback={null}>
-            <Model
-              album_color={currentAlbum.selectedAlbum.album_color}
-              image_url={currentAlbum.selectedAlbum.image_url}
-              review={albumReview || {}}
-            />
+            {currentAlbum.selectedAlbum ? (
+              <Model
+                album_color={currentAlbum.selectedAlbum.album_color}
+                image_url={currentAlbum.selectedAlbum.image_url}
+                review={albumReview || {}}
+              />
+            ) : (
+              <Note/>
+            )
+            }
             <mesh 
               pointerEvents='auto'
             >

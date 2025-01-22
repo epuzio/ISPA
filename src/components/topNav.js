@@ -1,14 +1,20 @@
 import './styles.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { AlbumNavContext, AlbumNavProvider } from '../contexts/albumNavContext.js';
+import { useContext } from 'react'
 
 export default function TopNav() {
+  const { currentAlbum, review } = useContext(AlbumNavContext);
+  const {albumReview, setAlbumReview} = review;
+
   const handleClickAbout = () => {
-    console.log("About section goes here, change model?");
+    // If selectedAlbum == null, scene.js loads the Note component
+    currentAlbum.setSelectedAlbum(null);
   }
   
   return (
     <div className='links' class={"topButtons"}>
-    {/* TODO: Open an explanation of the project */} 
+    {/* Returns to the Note Component */} 
       <button title="About" class="button topMenuButton" onClick={handleClickAbout}>
         <i class="fa-solid fa-circle-question"></i>
         </button>

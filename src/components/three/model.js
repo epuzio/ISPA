@@ -50,6 +50,7 @@ export default function Model({ album_color, image_url, review}) {
         
   return (
     <group dispose={null} position={[.85, 0, 0]}>
+
       <mesh
         castShadow
         receiveShadow
@@ -152,7 +153,7 @@ export default function Model({ album_color, image_url, review}) {
             anchorX="center"
             anchorY="middle" 
             // font='/fonts/epuzio_font.ttf'
-            font='/fonts/Caveat-VariableFont_wght.ttf'
+            font='/fonts/RockSalt-Regular.ttf'
             leading={0.1}
             style={{
               whiteSpace: 'pre-wrap',
@@ -237,19 +238,20 @@ export default function Model({ album_color, image_url, review}) {
           scale={[2.415, 1, 2.497]}
         >
           <Text
-            fontSize={0.025}
-            letterSpacing={-0.05} 
-            position={[-.31, -0.73, .58]} 
+            fontSize={0.02}
+            // letterSpacing={-0.05} 
+            lineHeight={1.5}
+            position={[-.05, -0.735, .56]} 
             rotation={[-Math.PI / 2, 0, Math.PI / 2]}
             color="#000000" 
             material-toneMapped={false} 
-            maxWidth={0.4} 
+            maxWidth={0.45} 
             maxHeight={0.2} 
-            textAlign="left" 
+            textAlign="center" 
             anchorX="center" 
-            anchorY="top" 
+            anchorY="middle" 
             overflowWrap='normal'
-            font='/fonts/Caveat-VariableFont_wght.ttf'
+            font='/fonts/RockSalt-Regular.ttf'
             style={{
               whiteSpace: 'pre-wrap',
               overflowY: 'scroll',

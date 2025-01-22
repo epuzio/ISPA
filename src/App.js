@@ -1,6 +1,6 @@
 import './App.css';
 import ScrollBar from './components/scrollBar';
-import Scene from './components/album/scene';
+import Scene from './components/three/scene';
 import Split from 'react-split';
 import { AlbumNavProvider } from './contexts/albumNavContext';
 

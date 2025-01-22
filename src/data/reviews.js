@@ -11,6 +11,10 @@ export const reviews = {
         "favorite": true,
         "rating": 4
     },
+    "softscars": {
+        "review": `I honestly don't remember much because I was trying to dodge horrific LA traffic for the duration of this album
+                  `,
+    },
     "Crest": {
         "pictureDescription": `First heard Five Star Crest traveling home from a day trip to Blair Atholl Castle`,
         "pictureUrl": "/images/crest.jpg",
@@ -32,10 +36,16 @@ export const reviews = {
         "rating": 5
     },
     "KiCk i": {
-        "review": `My initial thoughts: hard to ease into, but after the first few listens almost every song becomes addictive. This was one of my top albums this year and what introduced me to Arca's body of work, and it's the strongest of the Kick quintet, with the possible exception of KiCK ii. The emotional and sonic shift from Nonbinary to Time is incredible and really characterizes the album, and KiCK seems to build upon the promise for the future of music that SOPHIE's Oil Of Every Pearl's Uninsides established in 2018. My one critique is that many songs weren't as complex as I'd hoped, and songs like La Chíqui appear to be right on the cusp of a maximalist drop before they avert it entirely.
+        "review": `My initial thoughts: hard to ease into, but after the first few listens almost every song becomes addictive. This was one of my top albums this year and what introduced me to Arca's body of work, and it's the strongest of the quintet, with the possible exception of KiCK ii. The emotional and sonic shift from Nonbinary to Time is incredible and really characterizes the album and the direction Arca's music would take, and KiCK seems to build upon the promise for the future of music that SOPHIE's Oil Of Every Pearl's Uninsides established in 2018. 
                   `,
         "favorite": true,
         "rating": 4.5
+    },
+    "KICK ii": {
+        "review": `Most of my favorite songs from the quintet are on this album, and like Kick i, Kick ii crosses a wide range of styles and emotions: Prada, Tiro and Rakata are instant jolts of energy, while Luna Llena and Confianza have a contemplative, heartbreaking, almost religious quality to them. Kick ii is emotionally vulnerable even in moments of strength and confidence, and sets up for the slower pace of Kick iiii and iiiii.
+                  `,
+        "favorite": true,
+        "rating": 5
     },
     "Soft Rock": {
         "review": `I liked the singles that I'd already heard from the album, but no other song stuck out to me, and even the singles weren't too memorable. Good background music, or I need to listen to it a few more times, but I expected more from AG Cook + EASYFUN given their previous work.

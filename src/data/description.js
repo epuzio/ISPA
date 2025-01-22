@@ -1,0 +1,5 @@
+export const description = {
+    "projectDescription": 
+    `In 2024, I made a personal goal to listen to at least 100 new albums by the end of the year. To keep track of my progress, I added 1 song per album to a Spotify playlist titled 1SPA. Some albums were recommendations from friends, others were influential albums that I'd never made time to listen to, and some were new releases from artists that I already liked. As a long-time Letterboxd user, I was frustrated that Spotify didn't let me attatch notes to each song, as I wanted to record my thoughts on certain albums, or who had suggested that I listen to a particular artist. 1SPA displays this information from the albums I listened to in 2024, along with the memories that accompanied each one.`,
+    "technicalDescription": `Made with React ThreeJS, JavaScript, Node.js.`,
+}
