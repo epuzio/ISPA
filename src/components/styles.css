@@ -8,7 +8,15 @@
      --search-bar-shadow: #573939;
      --search-bar-highlight: #ba6767;
      --search-bar-display: #457f87;
-   }
+
+    --cdbutton-background: #bbbbbb;
+    --cdbutton-shadow: #7c7c7c;
+    --cdbutton-hover-shadow: #5d5d5d;
+    --cdbutton-highlight: #e5e5e5;
+    --cdbutton-hover-highlight: #f8f8f8;
+    --cdmenu-background:#8b8b8b;
+    --cdmenu-shadow: #626262;
+  }
  
  section {
      display: flex;
@@ -42,16 +50,60 @@
      margin: 0 auto;
      gap: 1rem;
      background-color: white;
+     color: black;
+     display: list-item;
+     padding-left: 0;
+     text-align: center;
  }
+
+ .scrollElement li {
+    counter-increment: item;
+    display: flex;
+    align-items: center;
+    /* background: var(--cd-shadow); */
+    container-type: inline-size; 
+    text-decoration: none; 
+    text-align: right;
+    align-items: right;
+}
+
+.scrollElement li:hover {
+    text-decoration: none; 
+    text-align: right;
+    align-items: right;
+}
+
+/* Numbers next to scroll elements */
+.scrollElement li::before {
+    content: counter(item);
+    font-size: 3cqw; 
+    margin-right: .75rem;
+    font-family: 'Helvetica', bold;
+    text-align: right;
+    align-items: right;
+    flex-shrink: 0;
+    width: 5cqw;
+    /* display: flex; */
+
+    /* background-color: var(--cd-background); 
+    padding: 1cqh 1cqh;   
+    border-radius: 50%; */
+}
+.scrollElement li:nth-child(3)::before {
+    content: ">";
+    font-size: 3cqw;
+}
  
  /* Individual Album CSS */
  .albumStyle{
+    color: black;
      width: 100%;
      aspect-ratio: 8 / 1;
      box-sizing: border-box;
-     box-shadow: inset 0px 0px 0px 3px;    
+     /* box-shadow: inset 0px 0px 0px 3px;     */
      text-align: center;
      display: flex;
+     /* display: list-item; */
      position: relative;
      align-items: center;
      justify-content: space-between;
@@ -80,9 +132,9 @@
      width: 100%;
      align-items: center;
      resize: horizontal;
- 
      padding-left: 2%;
      padding-right: 2%;
+
      /* Text resize */
      container-type: inline-size;
      display: flex;
@@ -137,16 +189,6 @@
  
 
  /* scene css */
-
- :root {
-    --cdbutton-background: #bbbbbb;
-    --cdbutton-shadow: #7c7c7c;
-    --cdbutton-hover-shadow: #5d5d5d;
-    --cdbutton-highlight: #e5e5e5;
-    --cdbutton-hover-highlight: #f8f8f8;
-    --cdmenu-background:#8b8b8b;
-    --cdmenu-shadow: #626262;
-  }
 
 .canvasElement{
     display: flex;

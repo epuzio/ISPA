@@ -52,18 +52,20 @@ export default function ScrollBar() {
         </div>
       
       {/* CDs */}
-      <div className="scrollElement">
+      <ol className="scrollElement">
         {selectedFilteredPlaylist.map((album, index) => (
-            <div
+            <li>
+              <div
               key={`${album.artist_name}-${album.album_title}`}
               className="albumStyle"
+              
               style={{
                 fontFamily: getGenreFont(album.artist_genre),
                 fontWeight: 400,
                 backgroundColor: getColorVariation(album.release_date) ?  '#bbbbbb' : '#ffffff',
                 boxShadow: getColorVariation(album.release_date) ? `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 50%)` : `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 25%)`,
               }}
-    
+                
               onClick={() => {
                 changeAlbums(album, index, selectedFilteredPlaylist);
               }}
@@ -92,8 +94,9 @@ export default function ScrollBar() {
               </div>
             </section>
             </div>
+            </li>
         ))}
-      </div>
+      </ol>
     </div>
   );
 }
