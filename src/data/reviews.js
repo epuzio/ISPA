@@ -29,8 +29,12 @@ export const reviews = {
         "recommended": "Law",
         "rating": 5
     },
+    "OIL OF EVERY PEARL'S UN-INSIDES": {
+        "review": `Despite my best efforts, SOPHIE's work has remained too experimental for me. I deeply respect the impact she made in pioneering pop/hyperpop, but her work focuses more on sound than song, and as a result most tracks felt like technical demonstrations rather than compositions. I really did want to love this album and I hope her posthumous release changes my judgements.
+                  `,
+    },
     "I LAY DOWN MY LIFE FOR YOU": {
-        "review": `Incredible to experience live. On my initial listen, I thought there were too many songs on this album, but over time I think that the standouts from this album really hold their own. JPEGMAFIA has an incredible gift for picking samples and a willingness to draw those samples from truly baffling sources. Watching underscores break down her production style on “Heck” made me appreciate artists who hear a random sound effect (like a Hanna Barbera scream! Or a line in Succession!) and think "I can build a song around this”. It takes a lot of musical/cultural knowledge to do that, plus heavy faith in your own abilities as a producer to make something cohesive - thoroughly impressed.
+        "review": `Thrilled to experience this live. JPEGMAFIA has an incredible gift for picking samples and a willingness to draw those samples from truly baffling sources. Watching underscores break down her production style on “Heck” made me appreciate artists who hear a random sound effect (like a line in Succession!) and think "I can build a song around this”. It takes a lot of musical/cultural knowledge to do that, plus heavy faith in your own abilities as a producer to make something cohesive - thoroughly impressed.
                   `,
         "favorite": true,
         "rating": 5
@@ -53,12 +57,7 @@ export const reviews = {
         "favorite": false,
         "rating": 3
     },
-    "LAUGHINGFISH": {
-        "review": `A more rock-esque direction for Black Dresses, which I ended up enjoying! Devi's vocals are softer on this one which is an interesting change of pace, and I loved the mental image painted by songs like IF YOU FIND ME GONE. The background for the release of this album provides context for the length and quality of many of the songs on it, and I'm left wondering how many of Ada or Devi's lyrics are about the other. 
-                  `,
-        "favorite": true,
-        "rating": 4.5
-    },
+    
     "Exile In Guyville": {
         "review": `
                     I wasn't expecting to like this as much as I did! Liz Phair's lyricism/word choices are very complex for the subject matter. 
@@ -84,6 +83,36 @@ export const reviews = {
         "favorite": false,
         "rating": 3
     },
+    "how i'm feeling now": {
+        "review": `Such a pinnacle of 2020 hyperpop. Ripe with emotional honesty and conjures nostalgia for the collective loss of time that we experienced under quarantine. "forever" and its accompanying music video will always make me emotional. Charli's persona has grown so much since this album - it's funny to see her exist as an e-girl fashion time capsule in the music video for "claws".
+                  `,
+        "favorite": true,
+        "rating": 4
+    },
+    "LAUGHINGFISH": {
+        "review": `A more rock-esque direction for Black Dresses, which I ended up enjoying! Devi's vocals are softer on this one which is an interesting change of pace, and I loved the mental image painted by songs like IF YOU FIND ME GONE. The background for the release of this album provides context for the length and quality of many of the songs on it, and I'm left wondering how many of Ada or Devi's lyrics are about the other. 
+                  `,
+        "favorite": true,
+        "rating": 4.5
+    },
+    "melanchole (remaster)": {
+        "review": `Either it's Alex G.-esque, or I'm homogenizing the entire bedroom pop genre down to a single person. Albums by teenagers always capture something so raw about growing up, and I'm glad that (unlike Jane Remover...) Salvia Palth was comfortable revisiting and rereleasing his older work with greater production quality.
+                  `,
+        "favorite": true,
+        "rating": 3
+    },
+    "E": {
+        "review": `Like Brat, this was the soundtrack to my year! This album hits every emotion you could possibly want from a drainer and the way Ecco discusses isolation seems to come from a more personal perspective than when Bladee sings about similar topics. No-skip album.
+                  `,
+        "favorite": true,
+        "rating": 5
+    },
+    "In Rainbows": {
+        "review": `I don't think I'm a Radiohead fan. Live and learn.
+                  `,
+        "favorite": true,
+        "rating": 2
+    },
     "Hounds of Love": {
         "review": `
                    Not many thoughts, but I can see Kate Bush's influence on modern-day art pop artists like Eartheater and Polachek.
@@ -91,14 +120,18 @@ export const reviews = {
         "favorite": false,
         "rating": null
     },
-    "Short 'n' Sweet": {
-        "review": `
-                   Sabrina Carpenter's persona irritated me this album, especially given the context of her dynamic with Olivia Rodrigo.
-                   Then again, I'm not a fan of pop, so I don't know what I was expecting. The production is good, albeit generic, but I preferred her singing (and persona) on fruitcake.
-                  `,
+    "Short n' Sweet": {
+        "review": `Sabrina Carpenter's persona irritated me this album, especially given the context of her dynamic with Olivia Rodrigo. Then again, I'm not a fan of pop, so I don't know what I was expecting. The production is good, albeit generic, but I preferred her singing (and persona) on fruitcake.`,
         "favorite": false,
         "rating": 2
     },
+    "第一幕": {
+        "review": `I love Hanatan's voice - it gives a different kind of depth to Kikuo’s instrumentals than the way he utilizes Vocaloid software. The way Hanatan's voice can go from cutesy to a full belt is impressive. KikuoHana songs feel more operatic as a result of Hanatan’s range as opposed to the crisp, fairy-tale sound Miku’s tuning provides. Filing this album (along with Official Orange) under my mental image of the ideal Dorohedoro soundtrack.`,
+        "favorite": false,
+        "rating": 4
+    },
+    
+    
     "In the Dream of the Sea Life": {
         "pictureDescription":`Listened to this while making pie for Friendsgiving!`,
         "pictureUrl": "/images/appaloosa_bones.jpg",
@@ -114,27 +147,19 @@ export const reviews = {
         "rating": 1
     },
     "Forever In Your Heart": {
-        "review": `
-                   This is the final Black Dresses album I had yet to listen to, and in my opinion it's their weakest.
-                   The rock direction they take this album makes many songs sound similar, and unlike LAUGHINGFISH there were
-                   no standout singles that grabbed my attention.   
+        "review": `This is the final Black Dresses album I had yet to listen to, and in my opinion it's their weakest. The rock direction they take this album makes many songs sound similar, and unlike LAUGHINGFISH there were no standout singles that grabbed my attention.   
                   `,
         "favorite": false,
         "rating": 3
     },
     "Everything Is Understood, Cats Live 100 Years": {
-        "review": `
-                   This album appeared out of nowhere and ended up being one of my favorites of this whole project. 
-                   Unfortunately, I haven't found translations for most of this album, but the vocals are so crisp and wistful
-                   that my heart aches regardless. 
+        "review": `This album appeared out of nowhere and ended up being one of my favorites of this whole project. Unfortunately, I haven't found translations for most of this album, but the vocals are so crisp and wistful that my heart aches regardless. 
                   `,
         "favorite": true,
         "rating": 4
     },
     "MG Ultra": {
-        "review": `
-                   An excellent synthesis of their work on Gemini and their work on WLFGRL + The Ugly Art + U-Void Synthesizer,
-                   while still retaining that classic Machine Girl sound. Wonderful to experience live.
+        "review": `An excellent synthesis of their work on Gemini and their work on WLFGRL + The Ugly Art + U-Void Synthesizer, while still retaining that classic Machine Girl sound. Wonderful to experience live.
                   `,
         "favorite": true,
         "rating": 4

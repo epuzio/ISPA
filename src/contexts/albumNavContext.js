@@ -61,6 +61,7 @@ export function AlbumNavProvider({ children }) {
     const [selectedFilteredPlaylist, setSelectedFilteredPlaylist] = useState([]);
     
     const changeAlbums = (album, index, filteredPlaylist) => {
+        console.log("changing albums to:", album);
         setSelectedAlbum(album);
         if(filteredPlaylist.length === 1) { // One album in query (cannot trigger changeAlbums if 0 in query)
             setSelectedLeftAlbum(album);

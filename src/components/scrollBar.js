@@ -3,13 +3,15 @@ import './styles.css';
 import { getGenreFont, getColorVariation, getTextColor } from "../utils/albumUtilFunctions.js";
 import {getPlaylist} from "../api/spotifyAPI.js";
 import { AlbumNavContext } from '../contexts/albumNavContext.js';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
-  const {filteredPlaylist, changeAlbums } = useContext(AlbumNavContext);
+  const {filteredPlaylist, currentAlbum, changeAlbums } = useContext(AlbumNavContext);
+  const {selectedAlbum, setSelectedAlbum} = currentAlbum;
   const {selectedFilteredPlaylist, setSelectedFilteredPlaylist} = filteredPlaylist;
-
   const [query, setQuery] = useState("");
+
 
   // Filter playlist if search query changes
   useEffect(() => {
@@ -47,55 +49,55 @@ export default function ScrollBar() {
             className="searchBar" 
             type="text" 
             placeholder={`Search...`} 
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value)
+            }}
           />
         </div>
       
       {/* CDs */}
       <ol className="scrollElement">
-        {selectedFilteredPlaylist.map((album, index) => (
-            <li>
-              <div
-              key={`${album.artist_name}-${album.album_title}`}
-              className="albumStyle"
-              
-              style={{
-                fontFamily: getGenreFont(album.artist_genre),
-                fontWeight: 400,
-                backgroundColor: getColorVariation(album.release_date) ?  '#bbbbbb' : '#ffffff',
-                boxShadow: getColorVariation(album.release_date) ? `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 50%)` : `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 25%)`,
-              }}
-                
-              onClick={() => {
-                changeAlbums(album, index, selectedFilteredPlaylist);
-              }}
-            >
-            {/* Individual CD spine */}
-            <section id={
-              `${album.artist_name}-${album.album_title}`} 
+      {selectedFilteredPlaylist.map((album, index) => (
+        <li key={`${album.artist_name}-${album.album_title}`}
+            onClick={() => {
+              changeAlbums(album, index, selectedFilteredPlaylist)
+            }}>
+          
+          <div>
+            <span className="listNumber">
+              {album === selectedAlbum ? <i class="fa fa-play"></i> : index + 1} 
+            </span>
+          </div>
+
+          <div className="albumStyle" 
+            style={{
+              fontFamily: getGenreFont(album.artist_genre),
+              fontWeight: 400,
+              backgroundColor: getColorVariation(album.release_date) ? '#bbbbbb' : '#ffffff',
+              boxShadow: getColorVariation(album.release_date) 
+                ? `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 50%)`
+                : `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 25%)`,
+            }}
+          >
+            <section id={`${album.artist_name}-${album.album_title}`} 
               className="albumText"
               style={{
                 backgroundColor: album.album_color,
-                boxShadow: getColorVariation(album.release_date) ? `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 50%)` : `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 25%)`,
+                boxShadow: getColorVariation(album.release_date) 
+                  ? `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 50%)`
+                  : `inset 0px 0px 0px 3px color-mix(in srgb, ${album.album_color}, black 25%)`,
               }}
-              >
-              <div className="albumArtist"
-                  style={{
-                    color: getTextColor(album.album_color)[0],
-                  }}>
+            >
+              <div className="albumArtist" style={{ color: getTextColor(album.album_color)[0] }}>
                 {album.artist_name}
               </div>
-
-              <div className="albumTitle"
-                style={{
-                  color: getColorVariation(album.release_date) ? getTextColor(album.album_color)[1] : getTextColor(album.album_color)[0],
-                }}>
-                  {album.album_title}
+              <div className="albumTitle" style={{ color: getColorVariation(album.release_date) ? getTextColor(album.album_color)[1] : getTextColor(album.album_color)[0] }}>
+                {album.album_title}
               </div>
             </section>
-            </div>
-            </li>
-        ))}
+          </div>
+        </li>
+      ))}
       </ol>
     </div>
   );

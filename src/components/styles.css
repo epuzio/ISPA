@@ -67,32 +67,19 @@
     align-items: right;
 }
 
-.scrollElement li:hover {
-    text-decoration: none; 
+.listNumber{
+    /* margin-right: 1rem; */
+    /* Text resize */
+    container-type: inline-size;
+    display: list-item;
+    margin-right: 1cqh;
+    font-size: 4cqw;
+    width: 4cqh;
     text-align: right;
     align-items: right;
+    font-family: 'Helvetica', sans-serif, bold;
 }
 
-/* Numbers next to scroll elements */
-.scrollElement li::before {
-    content: counter(item);
-    font-size: 3cqw; 
-    margin-right: .75rem;
-    font-family: 'Helvetica', bold;
-    text-align: right;
-    align-items: right;
-    flex-shrink: 0;
-    width: 5cqw;
-    /* display: flex; */
-
-    /* background-color: var(--cd-background); 
-    padding: 1cqh 1cqh;   
-    border-radius: 50%; */
-}
-.scrollElement li:nth-child(3)::before {
-    content: ">";
-    font-size: 3cqw;
-}
  
  /* Individual Album CSS */
  .albumStyle{
