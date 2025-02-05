@@ -7,48 +7,42 @@ import { AlbumNavProvider } from './contexts/albumNavContext';
 function App() {
   return (
       <AlbumNavProvider>
-      <div >
-        <Split
-            class="wrap"
-            sizes={[40, 60]}
-            gutterStyle={() => ({
-                backgroundColor: "#8b8b8b",
-                width: "8px",
-                height: "20%",
-                cursor: "col-resize",
-                top: "50%",
-                transform: "translateY(-50%)",
-                flexShrink: 0,
-            })}
-            gutterSize={30}
-            gutterAlign="center"
-            snapOffset={0}
-            dragInterval={1}
-            direction="horizontal"
-            cursor="col-resize"
-            gutter={() => {
-                const gutter = document.createElement("div");
-                gutter.style.backgroundColor = "#8b8b8b";
-                gutter.style.border = "10px solid white";
-                gutter.style.borderRadius = "50px 50px";
-                gutter.style.width = "15px";
-                gutter.style.position = "relative";
-                gutter.style.cursor = "col-resize";
-                gutter.style.transition = "background-color 0.1s";
+        <div >
+          <Split
+              class="wrap"
+              sizes={[40, 60]}
+              gutterStyle={() => ({
+                  width: "25px",
+                  height: "15%",
+                  cursor: "col-resize",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  flexShrink: 0,
+                  transition: "0.2s",
+              })}
+              gutterSize={30}
+              gutterAlign="center"
+              snapOffset={0}
+              dragInterval={1}
+              direction="horizontal"
+              cursor="col-resize"
 
-                gutter.onmouseover = () => {
-                  gutter.style.backgroundColor = "#626262";
-                };
-                gutter.onmouseout = () => {
-                    gutter.style.backgroundColor = "#8b8b8b";
-                };
-                return gutter;
-            }}
-        >
-            <ScrollBar/>
-            <Scene/>
-        </Split>
-      </div>
+              gutter={() => {
+                  const gutter = document.createElement("div");
+                  gutter.classList.add("splitBar");
+                  gutter.onmouseover = () => {
+                    gutter.style.backgroundColor = "#eaeaea";
+                  };
+                  gutter.onmouseout = () => {
+                      gutter.style.backgroundColor = "white";
+                  };
+                  return gutter;
+              }}
+          >
+              <ScrollBar/>
+              <Scene/>
+          </Split>
+        </div>
       </AlbumNavProvider>
   );
 }

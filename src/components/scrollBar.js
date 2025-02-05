@@ -44,7 +44,7 @@ export default function ScrollBar() {
   return (
     <div className='scrollClass'>
       {/* Search Bar */}
-        <div className="searchBarBorders"> 
+        {/* <div className="searchBarBorders">  */}
           <input 
             className="searchBar" 
             type="text" 
@@ -53,10 +53,10 @@ export default function ScrollBar() {
               setQuery(e.target.value)
             }}
           />
-        </div>
+        {/* </div> */}
       
       {/* CDs */}
-      <ol className="scrollElement">
+      <div className="scrollElement">
       {selectedFilteredPlaylist.map((album, index) => (
         <li key={`${album.artist_name}-${album.album_title}`}
             onClick={() => {
@@ -98,7 +98,7 @@ export default function ScrollBar() {
           </div>
         </li>
       ))}
-      </ol>
+      </div>
     </div>
   );
 }
