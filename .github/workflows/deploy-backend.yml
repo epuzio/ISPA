@@ -5,7 +5,7 @@ on:
     branches:
       - main
     schedule:
-    - cron: '0 * * * *'  #run hourly
+    - cron: '0 0 * * 0' #push every Sunday at midnight
 
 
 jobs:
@@ -25,12 +25,12 @@ jobs:
             -u "$REACT_APP_SPOTIFY_CLIENT_ID:$REACT_APP_SPOTIFY_CLIENT_SECRET" | jq -r '.access_token')
 
           curl -s -X GET "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M" \
-            -H "Authorization: Bearer $TOKEN" > data/spotify.json
+            -H "Authorization: Bearer $TOKEN" > src/data/spotify.json
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add data/spotify.json
-          git commit -m "Update Spotify data" || exit 0
+          git add src/data/spotify.json
+          git commit -m "Updated Spotify data" || exit 0
           git push
