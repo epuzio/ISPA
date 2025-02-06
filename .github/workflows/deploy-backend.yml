@@ -34,3 +34,5 @@ jobs:
           git add src/data/spotify.json
           git commit -m "Updated Spotify data" || exit 0
           git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
