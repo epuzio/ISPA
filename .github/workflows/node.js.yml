@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Build
-      run: CI=false npm run build
+      run: PUBLIC_URL=/ISPA/ CI=false npm run build
 
   deploy:
     needs: build
