@@ -44,7 +44,7 @@
     "webfontloader": "^1.6.28",
     "webloader": "^0.0.1"
   },
-  "homepage": ".",
+  "homepage": "https://epuzio.com/ISPA",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
