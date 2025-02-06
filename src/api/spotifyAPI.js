@@ -109,6 +109,10 @@ export const getPlaylist = async() => {
       return newPlaylist;
     }
   } catch (error) {
+    // pull from local storage if fetch fails
+    fetch("/data/spotify.json")
+    .then(res => res.json())
+    .then(data => console.log(data));
     console.error('Error fetching playlist:', error);
   }
 };
