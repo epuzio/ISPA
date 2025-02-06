@@ -22,7 +22,7 @@ export default function Model({ album_color, image_url, review}) {
     ref.current.rotation.y -= 0.01;
   });
 
-  const { nodes } = useGLTF('/models/cd-polaroid.gltf');
+  const { nodes } = useGLTF('./models/cd-polaroid.gltf');
 
   const plastic = new THREE.MeshToonMaterial({
     color: 0xd6d6d6,
