@@ -5,9 +5,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [ test-deploy ]
+    branches: [ main ]
   pull_request:
-    branches: [ test-deploy ]
+    branches: [ main ]
 
 jobs:
   build:
