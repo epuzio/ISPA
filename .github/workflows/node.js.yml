@@ -34,7 +34,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       if: success()
-      uses: epuzio/github-pages-deploy-action@v4
+      uses: actions/deploy-pages@v4
       with:
         branch: gh-pages
         folder: build
