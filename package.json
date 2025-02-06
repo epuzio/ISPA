@@ -5,6 +5,7 @@
   "dependencies": {
     "@expo-google-fonts/dev": "^0.2.3",
     "@expo-google-fonts/roboto": "^0.2.3",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@react-three/drei": "^9.120.5",
     "@rtcoder/dominant-color": "^0.1.4",
     "axios": "^1.7.9",
