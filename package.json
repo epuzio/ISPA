@@ -21,6 +21,7 @@
     "dotenv": "^16.4.7",
     "expo-font": "^13.0.3",
     "fast-average-color": "^9.4.0",
+    "font-awesome": "^4.7.0",
     "fs": "^0.0.1-security",
     "google-fonts": "^1.0.0",
     "imagemagick": "^0.1.3",
