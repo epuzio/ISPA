@@ -36,6 +36,6 @@ jobs:
       if: success()
       uses: actions/deploy-pages@v4
       with:
-        branch: gh-pages
+        token: ${{ secrets.GITHUB_TOKEN }}
         folder: build
 
