@@ -5,6 +5,10 @@ import {getPlaylist} from "../api/spotifyAPI.js";
 import { AlbumNavContext } from '../contexts/albumNavContext.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
+
+
 export default function ScrollBar() {
   const [playlist, setPlaylist] = useState([]);
   const {filteredPlaylist, currentAlbum, changeAlbums } = useContext(AlbumNavContext);
@@ -65,7 +69,7 @@ export default function ScrollBar() {
           
           <div>
             <span className="listNumber">
-              {album === selectedAlbum ? <i class="fa fa-play"></i> : index + 1} 
+              {album === selectedAlbum ? <FontAwesomeIcon icon={faPlay} /> : index + 1} 
             </span>
           </div>
 
