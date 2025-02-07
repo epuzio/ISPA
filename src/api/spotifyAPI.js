@@ -3,10 +3,9 @@ import qs from 'qs';
 import fs from 'fs';
 import {getAverageColor} from '../utils/averageColorUtil.js';
 
-// In src/api/spotifyAPI.js
 export const getPlaylist = async () => {
   try {
-    const response = await fetch('http://localhost:3000/playlist', {
+    const response = await fetch('http://localhost:3000/playlist', { //set to vercel later
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -18,12 +17,14 @@ export const getPlaylist = async () => {
     }
 
     const data = await response.json();
-    return JSON.stringify(data); // Your frontend code expects a string that can be JSON.parsed
+    return JSON.stringify(data);
   } catch (error) {
     console.error('Error fetching playlist:', error);
     return '[]'; // Return empty array string if there's an error
   }
 };
+
+
 
 // const clientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 // const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
