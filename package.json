@@ -78,5 +78,10 @@
   "license": "ISC",
   "devDependencies": {
     "gh-pages": "^6.3.0"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
