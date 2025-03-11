@@ -8,7 +8,8 @@ import { TextureLoader } from 'three'
 import { description } from '../../data/description.js'
 
 export default function Note(props) {
-  const { nodes } = useGLTF(`${process.env.PUBLIC_URL}/models/note.gltf`)
+  // const { nodes } = useGLTF(`${process.env.PUBLIC_URL}/models/note.gltf`)
+  const { nodes } = useGLTF("/models/note.gltf");
 
   // TOFIX: load playlist cover art
   // TOFIX: load times are horrific, probably due to size of image
@@ -103,8 +104,8 @@ export default function Note(props) {
           textAlign="center"
           anchorX="center"
           anchorY="top" 
-          // font='/fonts/RockSalt-Regular.ttf'
-          font={`${process.env.PUBLIC_URL}/fonts/epuzio_font.ttf`}
+          font={`/fonts/epuzio_font.ttf`}
+          // font={`${process.env.PUBLIC_URL}/fonts/epuzio_font.ttf`}
           leading={0.1}
           style={{
             whiteSpace: 'pre-wrap',
@@ -169,7 +170,8 @@ export default function Note(props) {
           textAlign="left"
           anchorX="center"
           anchorY="top" 
-          font={`${process.env.PUBLIC_URL}/fonts/Caveat-VariableFont_wght.ttf`}
+          // font={`${process.env.PUBLIC_URL}/fonts/Caveat-VariableFont_wght.ttf`}
+          font={`/fonts/Caveat-VariableFont_wght.ttf`}
           leading={0.1}
           style={{
             whiteSpace: 'pre-wrap',

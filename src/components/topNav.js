@@ -1,4 +1,4 @@
-import './styles.css';
+// import './styles.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { AlbumNavContext, AlbumNavProvider } from '../contexts/albumNavContext.js';
 import { useContext } from 'react'
@@ -17,16 +17,16 @@ export default function TopNav() {
   }
   
   return (
-    <div className='links' class={"topButtons"}>
+    <div className='links topButtons'>
     {/* Returns to the Note Component */} 
-      <button title="About" class="button topMenuButton" onClick={handleClickAbout}>
+      <button title="About" className="button topMenuButton" onClick={handleClickAbout}>
         {/* <i class="fa-solid fa-circle-question"></i> */}
         <FontAwesomeIcon icon={faQuestionCircle} />
         </button>
 
      {/* Spotify Link Button */} 
       <a href="https://open.spotify.com/playlist/62U2aL9NGYzQm5Y76bdZc8?si=4e6b62b6fe814b9d" target="_blank">
-        <button title="Listen on Spotify" class="button topMenuButton">
+        <button title="Listen on Spotify" className="button topMenuButton">
           {/* <i class="fa-brands fa-spotify"></i> */}
           <FontAwesomeIcon icon={faSpotify} />
         </button>
@@ -34,7 +34,7 @@ export default function TopNav() {
 
     {/* Github source code */}
     <a href="https://github.com/epuzio/ISPA" target="_blank">
-        <button title="Source Code" class="button topMenuButton">
+        <button title="Source Code" className="button topMenuButton">
         {/* <i class="fa-brands fa-github"></i> */}
         <FontAwesomeIcon icon={faGithub} />
         </button>

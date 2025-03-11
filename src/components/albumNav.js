@@ -1,6 +1,6 @@
 import { useContext, useRef } from 'react'
 import { AlbumNavContext, AlbumNavProvider } from '../contexts/albumNavContext.js';
-import './styles.css';
+// import './styles.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle, faFastForward, faFastBackward } from '@fortawesome/free-solid-svg-icons'

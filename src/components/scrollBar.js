@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useQuery,useContext } from 'react';
-import './styles.css';
+// import './styles.css';
 import { getGenreFont, getColorVariation, getTextColor } from "../utils/albumUtilFunctions.js";
-import {getPlaylist} from "../api/spotifyAPI.js";
+import {getPlaylist} from "./spotifyAPI.js";
 import { AlbumNavContext } from '../contexts/albumNavContext.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 

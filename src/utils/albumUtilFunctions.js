@@ -1,12 +1,33 @@
-import WebFont from 'webfontloader';
+// import WebFont from 'webfontloader';
 
-function loadFont(fontFamily) {
-  WebFont.load({
-    google: {
-      families: [fontFamily],
-    },
-  });
+// function loadFont(fontFamily) {
+//   WebFont.load({
+//     google: {
+//       families: [fontFamily],
+//     },
+//   });
+// }
+
+
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const WebFont = dynamic(() => import("webfontloader"), { ssr: false });
+
+export default function LoaderComponent({ fontFamily }) {
+  useEffect(() => {
+    import("webfontloader").then((WebFont) => {
+      WebFont.load({
+        google: {
+          families: [fontFamily],
+        },
+      });
+    });
+  }, [fontFamily]); // Add fontFamily as a dependency
+
+  return null;
 }
+
 
 // Map genres to fonts
 const genreFont = new Map([
@@ -46,8 +67,8 @@ export function getGenreFont(spotifyGenres){
   // check combined genres (i.e.: folk rock)
   for(let genre of spotifyGenres){
     if(genreFont.has(genre)){
-      const font = genreFont.get(genre);
-      loadFont(font);
+      // const font = genreFont.get(genre);
+      // loadFont(font);
       return genreFont.get(genre);
     }
   }
@@ -56,8 +77,8 @@ export function getGenreFont(spotifyGenres){
     let broadGenres = genre.split(" ");
     for(let broadGenre of broadGenres){
       if(genreFont.has(broadGenre)){
-        const font = genreFont.get(broadGenre);
-        loadFont(font);
+        // const font = genreFont.get(broadGenre);
+        // loadFont(font);
         return genreFont.get(broadGenre);
       }
     }

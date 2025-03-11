@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, useHelper } from '@react-three/drei'
 import { Stats, OrbitControls, Html } from '@react-three/drei'
 import { AlbumNavContext, AlbumNavProvider } from '../../contexts/albumNavContext.js';
-import '../styles.css';
+// import '../styles.css';
 import AlbumNav from '../albumNav.js';
 import TopNav from '../topNav.js';
 import '@fortawesome/fontawesome-free/css/all.min.css';
