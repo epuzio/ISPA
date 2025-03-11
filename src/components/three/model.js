@@ -24,7 +24,7 @@ export default function Model({ album_color, image_url, review}) {
   });
 
   // const { nodes } = useGLTF(`${process.env.PUBLIC_URL}/models/cd-polaroid.gltf`);
-  const { nodes } = useGLTF("/models/cd-polaroid.gltf");
+  const { nodes } = useGLTF("/ispa/models/note.gltf");
 
   const plastic = new THREE.MeshToonMaterial({
     color: 0xd6d6d6,

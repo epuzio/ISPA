@@ -9,7 +9,7 @@ import { description } from '../../data/description.js'
 
 export default function Note(props) {
   // const { nodes } = useGLTF(`${process.env.PUBLIC_URL}/models/note.gltf`)
-  const { nodes } = useGLTF("/models/note.gltf");
+  const { nodes } = useGLTF("/ispa/models/note.gltf");
 
   // TOFIX: load playlist cover art
   // TOFIX: load times are horrific, probably due to size of image
