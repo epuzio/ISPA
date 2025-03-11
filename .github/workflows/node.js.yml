@@ -32,7 +32,7 @@ jobs:
         PUBLIC_URL: "https://epuzio.com/ISPA"
     
     - name: Create .env file
-      working-directory: backend
+      working-directory: ./
       run: |
         echo "REACT_APP_SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}" >> .env
         echo "REACT_APP_SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}" >> .env
