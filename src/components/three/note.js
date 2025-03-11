@@ -17,9 +17,6 @@ export default function Note(props) {
     loader.crossOrigin = "anonymous";
   });
 
-
-
-
   // Rotate CD
   const ref = useRef();
   useFrame(() => {
@@ -104,7 +101,7 @@ export default function Note(props) {
           textAlign="center"
           anchorX="center"
           anchorY="top" 
-          font={`/fonts/epuzio_font.ttf`}
+          font={`/ispa/fonts/epuzio_font.ttf`}
           // font={`${process.env.PUBLIC_URL}/fonts/epuzio_font.ttf`}
           leading={0.1}
           style={{
@@ -171,7 +168,7 @@ export default function Note(props) {
           anchorX="center"
           anchorY="top" 
           // font={`${process.env.PUBLIC_URL}/fonts/Caveat-VariableFont_wght.ttf`}
-          font={`/fonts/Caveat-VariableFont_wght.ttf`}
+          font={`/ispa/fonts/Caveat-VariableFont_wght.ttf`}
           leading={0.1}
           style={{
             whiteSpace: 'pre-wrap',
@@ -206,4 +203,4 @@ export default function Note(props) {
   )
 }
 
-useGLTF.preload('/models/note.gltf')
+useGLTF.preload('/ispa/models/note.gltf')

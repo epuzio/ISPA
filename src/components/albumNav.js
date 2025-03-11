@@ -32,19 +32,19 @@ export default function AlbumNav() {
   return (
       <div className='buttons albumNavButtons'> 
         {/* Left Button */}
-        <button class="button cdMenuButton" onClick={handleClickLeft}>
+        <button className="button cdMenuButton" onClick={handleClickLeft}>
           {/* <i class="fa fa-fast-backward"></i> */}
           <FontAwesomeIcon icon={faFastBackward} />
         </button>
 
         {/* Shuffle Button */} 
-        <button class="button cdMenuButton" onClick={handleClickShuffle}>
+        <button className="button cdMenuButton" onClick={handleClickShuffle}>
           {/* <i class="fa-solid fa-shuffle"></i> */}
           <FontAwesomeIcon icon={faShuffle} />
         </button>
 
         {/* Right Button */} 
-        <button class="button cdMenuButton" onClick={handleClickRight}>
+        <button className="button cdMenuButton" onClick={handleClickRight}>
           {/* <i class="fa fa-fast-forward"></i> */}
           <FontAwesomeIcon icon={faFastForward} />
         </button>
