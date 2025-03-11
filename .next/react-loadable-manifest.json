@@ -1,22 +1,20 @@
 {
   "node_modules/@react-three/drei/core/VideoTexture.js -> hls.js": {
-    "id": "node_modules/@react-three/drei/core/VideoTexture.js -> hls.js",
+    "id": null,
     "files": []
   },
   "node_modules/@react-three/drei/web/FaceLandmarker.js -> @mediapipe/tasks-vision": {
-    "id": "node_modules/@react-three/drei/web/FaceLandmarker.js -> @mediapipe/tasks-vision",
-    "files": [
-      "static/chunks/node_modules_mediapipe_tasks-vision_vision_bundle_mjs.js"
-    ]
+    "id": null,
+    "files": []
   },
   "pages/index.js -> react-split": {
-    "id": "pages/index.js -> react-split",
+    "id": 5130,
     "files": []
   },
   "src/utils/albumUtilFunctions.js -> webfontloader": {
-    "id": "src/utils/albumUtilFunctions.js -> webfontloader",
+    "id": 5371,
     "files": [
-      "static/chunks/node_modules_webfontloader_webfontloader_js.js"
+      "static/chunks/371.29cfe8cc06e19e77.js"
     ]
   }
 }
