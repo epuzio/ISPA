@@ -14,7 +14,7 @@ export default function Model({ album_color, image_url, review}) {
 
   // Conditional, only load review picture if review.pictureUrl exists
   const textureLoader = new TextureLoader(); 
-  const polaroidImage = textureLoader.load("/ispa"+review.pictureUrl);
+  const polaroidImage = textureLoader.load(review.pictureUrl);
   console.log("Loading image from URL:", review.pictureUrl);
 
   
@@ -25,8 +25,8 @@ export default function Model({ album_color, image_url, review}) {
   });
 
   // const { nodes } = useGLTF(`${process.env.PUBLIC_URL}/models/cd-polaroid.gltf`);
-  const { nodes } = useGLTF("/ispa/models/cd-polaroid.gltf");
-  console.log("nodes", nodes);
+  const { nodes } = useGLTF("/models/cd-polaroid.gltf");
+
   const plastic = new THREE.MeshToonMaterial({
     color: 0xd6d6d6,
   });
@@ -156,7 +156,7 @@ export default function Model({ album_color, image_url, review}) {
             anchorX="center"
             anchorY="middle" 
             // font={`${process.env.PUBLIC_URL}/fonts/RockSalt-Regular.ttf`}
-            font={`/ispa/fonts/RockSalt-Regular.ttf`}
+            font={`/fonts/RockSalt-Regular.ttf`}
             leading={0.1}
             style={{
               whiteSpace: 'pre-wrap',
@@ -255,7 +255,7 @@ export default function Model({ album_color, image_url, review}) {
             anchorY="middle" 
             overflowWrap='normal'
             // font={`${process.env.PUBLIC_URL}/fonts/RockSalt-Regular.ttf`}
-            font={`/ispa/fonts/RockSalt-Regular.ttf`}
+            font={`/fonts/RockSalt-Regular.ttf`}
             style={{
               whiteSpace: 'pre-wrap',
               overflowY: 'scroll',
@@ -271,4 +271,4 @@ export default function Model({ album_color, image_url, review}) {
   )
 }
 
-useGLTF.preload('/ispa/models/cd-polaroid.gltf')
+useGLTF.preload('/models/cd-polaroid.gltf')

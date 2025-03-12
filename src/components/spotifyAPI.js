@@ -7,7 +7,7 @@ import {getAverageColor} from '../utils/averageColorUtil.js';
 export const getPlaylist = async () => {
   console.log("frontend trying to retrieve playlist");
   try {
-    const response = await fetch('/ispa/api/playlist', { 
+    const response = await fetch('/api/playlist', { 
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
