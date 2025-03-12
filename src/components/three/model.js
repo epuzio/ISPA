@@ -8,6 +8,8 @@ import { TextureLoader } from 'three'
 
 export default function Model({ album_color, image_url, review}) {
   // Load album cover art
+  console.log("Loading image from URL:", image_url);
+
   const albumImage = useLoader(TextureLoader, image_url, (loader) => {
     loader.crossOrigin = "anonymous";
   });
@@ -122,7 +124,7 @@ export default function Model({ album_color, image_url, review}) {
         />
       )}
 
-      {review?.pictureUrl && (
+      {review && review?.pictureUrl && (
         <>
         <mesh
           castShadow
@@ -165,7 +167,7 @@ export default function Model({ album_color, image_url, review}) {
               msOverflowStyle: 'auto',
             }}
           >
-            {review.pictureDescription}
+            {review.description}
           </Text>
 
         )}
